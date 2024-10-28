@@ -1,0 +1,44 @@
+GPU 1 assigned to the job
+Function main started at 2024-05-21 15:06:15
+    Function make_slab_with_additive started at 2024-05-21 15:06:15
+        Function run_insertion_LAMMPS started at 2024-05-21 15:06:15
+        Function run_insertion_LAMMPS ended at 2024-05-21 15:06:15
+            Elapsed time: 0.007080078125 seconds
+        Function run_relaxation_ASE started at 2024-05-21 15:06:15
+        Function run_relaxation_ASE ended at 2024-05-21 15:06:15
+            Elapsed time: 0.0025017261505126953 seconds
+        Function select_slab_with_minimal_energy started at 2024-05-21 15:06:15
+        Function select_slab_with_minimal_energy ended at 2024-05-21 15:06:15
+            Elapsed time: 0.0003223419189453125 seconds
+    Function make_slab_with_additive ended at 2024-05-21 15:06:15
+        Elapsed time: 0.009968280792236328 seconds
+    Function repeat_adsorption started at 2024-05-21 15:06:15
+        Function run_insertion_LAMMPS started at 2024-05-21 15:06:15
+        Function run_insertion_LAMMPS ended at 2024-05-21 15:06:15
+            Elapsed time: 0.0017843246459960938 seconds
+        Function run_relaxation_ASE started at 2024-05-21 15:06:15
+        Function run_relaxation_ASE ended at 2024-05-21 15:08:05
+            Elapsed time: 110.16761898994446 seconds
+        Function check_etchant_dissociation started at 2024-05-21 15:08:05
+        Function check_etchant_dissociation ended at 2024-05-21 15:08:05
+            Elapsed time: 0.08580183982849121 seconds
+        Function check_reconstruction started at 2024-05-21 15:08:05
+        Function check_reconstruction ended at 2024-05-21 15:08:05
+            Elapsed time: 0.08717179298400879 seconds
+        Function remove_etchant_molecule started at 2024-05-21 15:08:05
+        Function remove_etchant_molecule ended at 2024-05-21 15:08:05
+            Elapsed time: 0.023472309112548828 seconds
+        Function run_relaxation_ASE_reconst started at 2024-05-21 15:08:05
+        Function run_relaxation_ASE_reconst ended at 2024-05-21 15:08:27
+            Elapsed time: 21.707825899124146 seconds
+        Function check_reconstruction_reverse started at 2024-05-21 15:08:27
+        Function check_reconstruction_reverse ended at 2024-05-21 15:08:27
+            Elapsed time: 0.06386303901672363 seconds
+    Function repeat_adsorption ended at 2024-05-21 15:08:27
+        Elapsed time: 132.13777017593384 seconds
+    Function summarize_results started at 2024-05-21 15:08:27
+Chemisorption ratio: 0.0
+    Function summarize_results ended at 2024-05-21 15:08:28
+        Elapsed time: 1.2736098766326904 seconds
+Function main ended at 2024-05-21 15:08:28
+    Elapsed time: 133.42599058151245 seconds

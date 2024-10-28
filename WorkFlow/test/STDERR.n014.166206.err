@@ -1,0 +1,2 @@
+/home/andynn/.local/lib/python3.9/site-packages/ase/calculators/lammpsrun.py:308: UserWarning: semi-periodic ASE cell detected - translation to proper LAMMPS input cell might fail
+  warnings.warn(

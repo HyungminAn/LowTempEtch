@@ -1,0 +1,67 @@
+dst: "./run"
+
+additive:
+  paths:
+    slab: "/data2/andynn/LowTempEtch/04_Adsorb_noAdditive/01_SiO2/gen_poscar/POSCAR_relaxed"
+    # mol: "/data2/andynn/LowTempEtch/03_gases/run/POSCAR_IF5/02_SevenNet/dump.lammps"
+    mol: "/data2/andynn/LowTempEtch/03_gases/run/PF3/02_SevenNet/dump.lammps"
+    dst_1: "%(dst)s/insert_additive"
+    dst_2: "%(dst)s/relax_with_inserted_additive"
+    dst_3: "%(dst)s/POSCAR_with_additive"
+
+  mol_info:
+    # name: "IF5"
+    name: "PF3"
+    n_insert: 1
+    n_repeat: 1
+    run_short_MD: False
+    md_time: 10  # ps
+    md_temp: 150
+
+  perturb:
+    flag: False
+    scale: 0.5
+    cutoff: 3.0
+
+etchant:
+  paths:
+    mol: "/data2/andynn/LowTempEtch/03_gases/run/base/HF/02_SevenNet/dump.lammps"
+    slab: "%(dst)s/POSCAR_with_additive"
+    dst_1: "%(dst)s/insert_etchant"
+    dst_2: "%(dst)s/relax_with_inserted_etchant"
+    dst_3: "%(dst)s/relax_reconstructed_slab"
+
+  mol_info:
+    name: "HF"
+    n_insert: 1
+    n_repeat: 1
+    run_short_MD: False
+    md_time: 10  # ps
+    md_temp: 150
+
+  perturb:
+    flag: True
+    scale: 0.5
+    cutoff: 3.0
+
+
+constraint:
+  fix_bottom_height: 4.0
+
+relax:
+  path_pot: /data2/shared_data/pretrained/7net_m3g/deployed_serial.pt
+  opt_type: LBFGS
+  filter_type: FrechetCellFilter
+  cell_relax: False
+  fix_symmetry: False
+  path_extxyz: opt.extxyz
+  path_relaxed: POSCAR_relaxed
+  path_lmp_bin: /TGM/Apps/ANACONDA/2022.05/envs/pub_sevenn/bin/lmp_sevenn_d3
+  max_steps: 2000
+  fmax: 0.02
+  lmp_input:
+    boundary: "p p f"
+
+plot:
+  x_min: null
+  x_max: null
