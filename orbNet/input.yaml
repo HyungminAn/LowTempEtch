@@ -1,0 +1,33 @@
+path:
+  traj: "opt.extxyz"
+  output: "POSCAR_relaxed"
+  log: 'log'
+
+  d3:
+    r0ab: /data2/andynn/lammps_d3/13_rewrite_csv/r0ab_new.csv
+    c6ab: /data2/andynn/lammps_d3/13_rewrite_csv/d3_pars.csv
+  lmp_bin: /TGM/Apps/ANACONDA/2022.05/envs/pub_sevenn/bin/lmp_sevenn_d3
+
+device: 'cuda'
+model: 'orb-v1'
+# Available:
+# orb-v1: trained on MPTraj + Alexandria.
+# orb-mptraj-only-v1: trained on the MPTraj dataset only to reproduce our second Matbench Discovery result. We do not recommend using this model for general use.
+# orb-d3-v1: trained on MPTraj + Alexandria with integrated D3 corrections. In general, we recommend using this model, particularly for systems where dispersion interactions are important. This model was trained to predict D3-corrected targets and hence is the same speed as orb-v1. Incorporating D3 into the model like this is substantially faster than using analytical D3 corrections.
+# orb-d3-{sm,xs}-v1: Smaller versions of orb-d3-v1. The sm model has 10 layers, whilst the xs model has 5 layers.
+
+include_d3: False
+
+options:
+  opt_type: FIRE
+  filter_type: FrechetCellFilter
+  filter_options:
+    hydrostatic_strain: False
+    constant_volume: False
+    scalar_pressure: 0.0
+  cell_relax: False
+  fix_symmetry: False
+  max_steps: 1000
+  fmax: 0.02
+  lmp_input:
+    boundary: 'p p p'
