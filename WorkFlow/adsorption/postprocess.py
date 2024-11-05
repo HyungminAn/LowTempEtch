@@ -1,8 +1,6 @@
 import os
 import sys
 import yaml
-import functools
-import time
 from pathlib import Path
 
 import numpy as np
@@ -11,29 +9,9 @@ import numpy as np
 script_directory = Path(__file__).parent.absolute()
 sys.path.append(str(script_directory))
 
+from utils.log import log_function_call  # noqa: E402
 from check_disso import is_etchant_dissociated  # noqa: E402
 from check_surf_reconst import is_surface_reconstructed  # noqa: E402
-
-
-def log_function_call(func, indent_level=[0]):
-    @functools.wraps(func)
-    def wrapper(*args, **kwargs):
-        tab = indent_level[0] * "    "
-        indent_level[0] += 1
-        clock = f"{time.strftime('%Y-%m-%d %H:%M:%S')}"
-        print(f"{tab}Function {func.__name__} started at {clock}")
-
-        start_time = time.time()
-        result = func(*args, **kwargs)
-        end_time = time.time()
-
-        clock = f"{time.strftime('%Y-%m-%d %H:%M:%S')}"
-        print(f"{tab}Function {func.__name__} ended at {clock}")
-        print(f"{tab}    Elapsed time: {end_time - start_time} seconds")
-
-        indent_level[0] -= 1
-        return result
-    return wrapper
 
 
 @log_function_call

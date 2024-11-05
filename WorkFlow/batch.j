@@ -17,4 +17,4 @@ vasp_ncl='/TGM/Apps/VASP/VASP_BIN/6.3.2/vasp.6.3.2.vtst.ncl.x'
 ### To choose GPU nodes, turn on the option below...
 # export CUDA_VISIBLE_DEVICES= 0
 
-python run_adsorption.py
+python main.py

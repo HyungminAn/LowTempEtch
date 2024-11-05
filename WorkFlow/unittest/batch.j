@@ -12,5 +12,5 @@
 ### To choose GPU nodes, turn on the option below...
 # export CUDA_VISIBLE_DEVICES= 0
 
-path_py="/data2/andynn/LowTempEtch/run_auto/run_adsorption.py"
+path_py="/data2/andynn/LowTempEtch/00_codes/WorkFlow/main.py"
 python ${path_py}

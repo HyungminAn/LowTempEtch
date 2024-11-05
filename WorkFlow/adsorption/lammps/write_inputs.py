@@ -1,4 +1,3 @@
-import numpy as np
 from ase.data import atomic_numbers, atomic_masses
 from ase.io import read
 

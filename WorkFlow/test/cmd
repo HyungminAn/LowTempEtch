@@ -1,2 +1,0 @@
-rm -rf STD*
-sbatch batch.j
