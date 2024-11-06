@@ -12,7 +12,7 @@ def get_element_order(path_mol, path_slab):
     [elem_order.append(i) for i in slab.get_chemical_symbols()
      if i not in elem_order]
 
-    mol = read(path_mol, format='lammps-dump-text', index='-1')
+    mol = read(path_mol)
     [elem_order.append(i) for i in mol.get_chemical_symbols()
      if i not in elem_order]
 

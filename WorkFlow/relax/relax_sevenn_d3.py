@@ -1,7 +1,7 @@
+from pathlib import Path
 import time
 import os
 import sys
-
 import numpy as np
 
 from ase.io import read, write
@@ -15,54 +15,99 @@ from ase.optimize import MDMin
 from ase.optimize import FIRE
 from ase.filters import FrechetCellFilter
 from ase.units import bar
-from ase.spacegroup.symmetrize import FixSymmetry
+if sys.version_info >= (3, 10):
+    from ase.constraints import FixSymmetry
+else:
+    from ase.spacegroup.symmetrize import FixSymmetry
+from ase.calculators.mixing import MixedCalculator
+from sevenn.sevennet_calculator import SevenNetCalculator
 
-# warnings.filterwarnings(action='ignore')
+
+class UnavailableParameterError(Exception):
+    def __init__(self, param_name, value):
+        self.param_name = param_name
+        self.value = value
+
+    def __str__(self):
+        return f"Parameter {self.param_name} is not available: {self.value}"
 
 
-def generate_calculator(path_lmp_bin, path_pot, atoms, lmp_input=None):
+class ParameterUnsetError(Exception):
+    def __init__(self, param_name):
+        self.param_name = param_name
+
+    def __str__(self):
+        return f"Parameter {self.param_name} is not set"
+
+
+def gen_d3_calculator(atoms, **inputs):
+    '''
+    D3 calculator for LAMMPS
+    '''
+    path_lmp_bin = inputs['path']['lmp_bin']
+    path_r0ab = inputs['path']['d3']['r0ab']
+    path_c6ab = inputs['path']['d3']['c6ab']
+    lmp_input = inputs['options'].get('lmp_input')
+
     os.environ['ASE_LAMMPSRUN_COMMAND'] = path_lmp_bin
 
     specorder = []
     [specorder.append(i) for i in atoms.get_chemical_symbols()
         if i not in specorder]
     elements = ' '.join(specorder)
+    print(elements)
 
-    path_r0ab = "/data2/andynn/lammps_d3/13_rewrite_csv/r0ab_new.csv"
-    path_c6ab = "/data2/andynn/lammps_d3/13_rewrite_csv/d3_pars.csv"
     cutoff_d3 = 9000
     cutoff_d3_CN = 1600
     func_type = "pbe"
     damping_type = "d3_damp_bj"
 
     parameters = {
-        'pair_style': f'hybrid/overlay e3gnn d3 {cutoff_d3} {cutoff_d3_CN} \
-            {damping_type}',
-        'pair_coeff': [
-            f'* * e3gnn {path_pot} {elements}',
-            f'* * d3 {path_r0ab} {path_c6ab} {func_type} {elements}'],
-        'compute': 'my_d3_compute all pressure NULL virial pair/hybrid d3'
+        'pair_style': f'd3 {cutoff_d3} {cutoff_d3_CN} {damping_type}',
+        'pair_coeff': [f'* * {path_r0ab} {path_c6ab} {func_type} {elements}'],
     }
-
     if lmp_input:
         for k, v in lmp_input.items():
             parameters[k] = v
 
-    calculator = LAMMPS(
-        parameters=parameters, files=[path_pot], keep_alive=True,
-        specorder=specorder,
-        )
+    calc_settings = {
+        'parameters': parameters,
+        'keep_alive': True,
+        'specorder': specorder,
+        # 'keep_tmp_files': True,
+        # 'tmp_dir': 'debug',
+        # 'always_triclinic': True,
+        # 'verbose': True,
+    }
 
-    return calculator
+    d3_calculator = LAMMPS(**calc_settings)
+    return d3_calculator
 
 
-def save_info(atoms, path_dst, extxyz_filename, step):
+def gen_gnn_calculator(**inputs):
     '''
+    GNN calculator for LAMMPS
+    '''
+    model = inputs['model']
+    model_path = inputs['path']['pot']['7net'].get(model)
+    if model_path is None:
+        raise ValueError(f"Model {model} not found")
+
+    if not os.path.isfile(model_path):
+        raise FileNotFoundError(f"Model file {model_path} not found")
+
+    calc_gnn = SevenNetCalculator(model=model_path)
+    print(f"GNN model {model} loaded: {model_path}")
+    return calc_gnn
+
+
+def save_info(atoms, thermo_dat, extxyz_filename, step):
+    """
     Save atomic positions to a trajectory file
         and the stress tensor to another file.
     Voigt order: xx, yy, zz, yz, xz, xy
     Saved order: xx, yy, zz, xy, yz, zx
-    '''
+    """
 
     PotEng = atoms.get_potential_energy()
     volume = atoms.get_volume()
@@ -74,58 +119,80 @@ def save_info(atoms, path_dst, extxyz_filename, step):
     line += f"{stress[0]:15.4f}  {stress[1]:15.4f}  {stress[2]:15.4f}  "
     line += f"{stress[5]:15.4f}  {stress[3]:15.4f}  {stress[4]:15.4f}\n"
 
-    with open(f'{path_dst}/thermo.dat', 'a') as f:
+    with open(thermo_dat, 'a') as f:
         f.write(line)
 
     write(extxyz_filename, atoms, format='extxyz', append=True)
 
 
-def set_optimizer(atoms, path_dst, logfile=None, **inputs):
+def gen_optimizer(atoms, logfile=None, **inputs):
     '''
-    select optimizer type and attach constraints & logfiles
+    Generate an optimizer for the given *atoms*
     '''
-
-    opt_type = inputs['opt_type']
-    if opt_type == 'BFGS':
-        opt_type = BFGS
-    elif opt_type == 'BFGSLineSearch':
-        opt_type = BFGSLineSearch
-    elif opt_type == 'LBFGS':
-        opt_type = LBFGS
-    elif opt_type == 'LBFGSLineSearch':
-        opt_type = LBFGSLineSearch
-    elif opt_type == 'GPMin':
-        opt_type = GPMin
-    elif opt_type == 'MDMin':
-        opt_type = MDMin
-    elif opt_type == 'FIRE':
-        opt_type = FIRE
-    else:
-        print('Invalid optimizer type')
-        sys.exit()
-
-    cell_relax = inputs['cell_relax']
-    filter_type = inputs['filter_type']
+    opt_type = set_optimizer(**inputs)
+    cell_relax = inputs['options']['cell_relax']
+    filter_type = inputs['options']['filter_type']
     if cell_relax:
         if filter_type == 'FrechetCellFilter':
             filter_type = FrechetCellFilter
         else:
-            print('Invalid filter type')
-            sys.exit()
+            raise UnavailableParameterError('filter_type', filter_type)
 
-    if cell_relax:
-        ecf = filter_type(atoms)
+        filter_options = inputs['options'].get('filter_options')
+        if filter_options is not None:
+            ecf = filter_type(atoms, **filter_options)
+        else:
+            ecf = filter_type(atoms)
         opt = opt_type(ecf, logfile=logfile)
     else:
         opt = opt_type(atoms, logfile=logfile)
 
-    path_extxyz = inputs['path_extxyz']
-    extxyz_file = f'{path_dst}/{path_extxyz}'
-    with open(extxyz_file, 'w') as _:
+    return opt
+
+
+def run_optimizer(opt, fmax, steps, logfile='-'):
+    '''
+    Run the optimizer *opt* with given *fmax* and *steps*
+    '''
+    time_init = time.time()
+    logfile.write('######################\n')
+    logfile.write('##   Relax starts   ##\n')
+    logfile.write('######################\n')
+
+    opt.run(fmax=fmax, steps=steps)
+
+    logfile.write(f'\nElapsed time: {time.time()-time_init} s\n\n')
+    logfile.write('########################\n')
+    logfile.write('##  Relax terminated  ##\n')
+    logfile.write('########################\n')
+
+
+def atom_relax(atoms, dst=None, logfile=None, **inputs):
+    '''
+    Run structure optimization for given *atoms*
+    '''
+    if atoms.calc is None:
+        raise ParameterUnsetError('calculator')
+
+    fmax = inputs['options']['fmax']
+    if fmax is None:
+        raise ParameterUnsetError('fmax')
+
+    steps = inputs['options']['max_steps']
+    if steps is None:
+        raise ParameterUnsetError('max_steps')
+
+    fix_symmetry = inputs['options']['fix_symmetry']
+    if fix_symmetry:
+        atoms.set_constraint(FixSymmetry(atoms))
+
+    traj = dst/inputs['path']['traj']
+    thermo = dst/'thermo.dat'
+    with open(traj, 'w') as _:
         pass
 
     # Define a function to be called at each optimization step
-    with open(f'{path_dst}/thermo.dat', 'w') as f:
+    with open(thermo, 'w') as f:
         line = f"{'step':>8s}  {'PotEng':>15s}  {'volume':>15s}  "
         line += f"{'press':>15s}  "
         line += f"{'p_xx':>15s}  {'p_yy':>15s}  {'p_zz':>15s}  "
@@ -134,58 +201,17 @@ def set_optimizer(atoms, path_dst, logfile=None, **inputs):
 
     def custom_step_writer():
         step = opt.nsteps
-        save_info(atoms, path_dst, extxyz_file, step)
+        save_info(atoms, thermo, traj, step)
 
+    opt = gen_optimizer(atoms, logfile=logfile, **inputs)
     opt.attach(custom_step_writer)
-
-    return opt
-
-
-def atom_relax(atoms, calc, path_dst, logfile=None, **inputs):
-
-    opt = set_optimizer(atoms, path_dst, logfile=logfile, **inputs)
-
-    fix_symmetry = inputs['fix_symmetry']
-    if fix_symmetry:
-        atoms.set_constraint(FixSymmetry(atoms))
-
-    atoms.calc = calc
-
-    fmax = inputs['fmax']
-    if fmax is None:
-        print("fmax must be set; exit.")
-        sys.exit()
-
-    steps = inputs['max_steps']
-    if steps is None:
-        print("max_steps must be set; exit.")
-        sys.exit()
-
-    time_init = time.time()
-    logfile.write('######################\n')
-    logfile.write('##   Relax starts   ##\n')
-    logfile.write('######################\n')
-
-    try:
-        opt.run(fmax=fmax, steps=steps)
-    except RuntimeError:
-        logfile.write('Runtime error occurred during relaxation')
-        logfile.close()
-
-        sys.stderr.write(f'---- Runtime error occurred at {path_dst} ----\n')
-        return False
-
-    logfile.write(f'\nElapsed time: {time.time()-time_init} s\n\n')
-    logfile.write('########################\n')
-    logfile.write('##  Relax terminated  ##\n')
-    logfile.write('########################\n')
-    logfile.close()
-
-    return True
+    run_optimizer(opt, fmax, steps, logfile=logfile)
 
 
 def log_initial_structure(atoms, logfile='-'):
-
+    '''
+    Log the initial structure to the *logfile*
+    '''
     _cell = atoms.get_cell()
     logfile.write("Cell\n")
     for ilat in range(0, 3):
@@ -210,38 +236,66 @@ def log_initial_structure(atoms, logfile='-'):
         logfile.write(line)
 
 
-def relax(poscar_path, path_dst, **inputs):
-    # atoms = read(poscar_path, format='lammps-data')
+def set_optimizer(**inputs):
+    opt_type = inputs['options']['opt_type']
+    opt_dict = {
+        'BFGS': BFGS,
+        'BFGSLineSearch': BFGSLineSearch,
+        'LBFGS': LBFGS,
+        'LBFGSLineSearch': LBFGSLineSearch,
+        'GPMin': GPMin,
+        'MDMin': MDMin,
+        'FIRE': FIRE,
+    }
+    opt_type = opt_dict.get(opt_type)
+    if opt_type is not None:
+        return opt_type
+    else:
+        raise UnavailableParameterError('opt_type', opt_type)
+
+
+def load_atoms(poscar_path, **inputs):
+    lmp_input = inputs['options'].get('lmp_input')
     atoms = read(poscar_path, format='vasp')
     atoms = atoms[atoms.numbers.argsort()]
-
-    inputs = inputs["relax"]
-    lmp_input = inputs.get('lmp_input')
     if lmp_input is not None:
         pbc = lmp_input.get('boundary')
         if pbc is not None:
             pbc = [True if i == 'p' else False for i in pbc.split()]
             atoms.set_pbc(pbc)
+    return atoms
 
-    logfile = open(f'{path_dst}/log', 'w', buffering=1)
-    log_initial_structure(atoms, logfile)
 
-    path_pot = inputs['path_pot']
-    path_lmp_bin = inputs['path_lmp_bin']
-    calc = generate_calculator(
-        path_lmp_bin, path_pot, atoms, lmp_input=lmp_input)
-
-    is_relax_success = atom_relax(
-        atoms, calc, path_dst, logfile=logfile, **inputs)
-
-    path_relaxed = inputs['path_relaxed']
-
-    if is_relax_success:
-        write(f'{path_dst}/{path_relaxed}', atoms)
-        return True
+def gen_calculator(atoms, **inputs):
+    '''
+    Generate a calculator for the given *atoms*
+    '''
+    calc_gnn = gen_gnn_calculator(**inputs)
+    if inputs.get('include_d3'):
+        calc_d3 = gen_d3_calculator(atoms, **inputs)
+        ratio_gnn = 1
+        ratio_d3 = 1
+        calc = MixedCalculator(calc_gnn, calc_d3, ratio_gnn, ratio_d3)
     else:
-        if os.path.exists(f'{path_dst}/thermo.dat'):
-            os.remove(f'{path_dst}/thermo.dat')
-        if os.path.exists(f'{path_dst}/{inputs["path_extxyz"]}'):
-            os.remove(f'{path_dst}/{inputs["path_extxyz"]}')
-        return False
+        calc = calc_gnn
+
+    return calc
+
+
+def relax(poscar_path, path_dst, **inputs):
+    '''
+    Relax the structure given by *poscar_path*
+    '''
+    inputs = inputs['relax']
+    dst = Path(path_dst)
+    with open(dst/'log', 'w') as logfile:
+        atoms = load_atoms(poscar_path, **inputs)
+        log_initial_structure(atoms, logfile)
+
+        calc = gen_calculator(atoms, **inputs)
+        atoms.calc = calc
+
+        atom_relax(atoms, dst=dst, logfile=logfile, **inputs)
+
+        path_output = dst/inputs['path']['output']
+        write(path_output, atoms)

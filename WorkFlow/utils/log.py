@@ -16,7 +16,11 @@ def log_function_call(func, indent_level=[0]):
 
         clock = f"{time.strftime('%Y-%m-%d %H:%M:%S')}"
         print(f"{tab}Function {func.__name__} ended at {clock}")
-        print(f"{tab}    Elapsed time: {end_time - start_time} seconds")
+        elapsed_time = end_time - start_time
+        if elapsed_time > 1e-03:
+            print(f"{tab}    Elapsed time: {elapsed_time:.3f} s")
+        else:
+            print(f"{tab}    Elapsed time: < 1 ms")
 
         indent_level[0] -= 1
         return result

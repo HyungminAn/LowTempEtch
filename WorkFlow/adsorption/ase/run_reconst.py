@@ -5,7 +5,7 @@ from relax.relax_sevenn_d3 import relax  # noqa: E402
 
 
 @log_function_call
-def run_relaxation_ASE_reconst(key, idx_reconst_dict, **inputs):
+def run(key, idx_reconst_dict, **inputs):
     '''
     run_relaxation_ASE function for reconstructed slabs
     '''
@@ -15,7 +15,7 @@ def run_relaxation_ASE_reconst(key, idx_reconst_dict, **inputs):
         dst_poscar = f'{dst}/POSCAR'
 
         p = Path(dst)
-        poscar_relaxed = p / inputs["relax"]["path_relaxed"]
+        poscar_relaxed = p / inputs["relax"]["path"]["output"]
         if poscar_relaxed.exists():
             continue
 

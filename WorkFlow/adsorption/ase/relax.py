@@ -35,15 +35,18 @@ def run(key, **inputs):
         dst_poscar = f'{dst}/POSCAR'
 
         p = Path(dst)
-        poscar_relaxed = p / inputs["relax"]["path_relaxed"]
+        poscar_relaxed = p / inputs["relax"]["path"]["output"]
         if poscar_relaxed.exists():
             continue
         p.mkdir(parents=True, exist_ok=True)
 
         src = f'{path_src}/{i}'
         src_lmp_dat = f'{src}/FINAL.coo'
-        lmp2pos(src_lmp_dat, dst_poscar,
-                fix_bottom_height=fix_bottom_height)
+        lmp2pos(
+            src_lmp_dat,
+            dst_poscar,
+            fix_bottom_height=fix_bottom_height,
+        )
 
         is_relax_success = relax(dst_poscar, dst, **inputs)
 
@@ -53,11 +56,16 @@ def run(key, **inputs):
     for i in range(n_repeat):
         dst = f'{path_dst}/{i}'
         dst_poscar = f'{dst}/POSCAR'
-        rlx_traj = f'{dst}/' + inputs["relax"]["path_extxyz"]
+        rlx_traj = f'{dst}/' + inputs["path"]["traj"]
         scale = inputs[key]["perturb"]["scale"]
         cutoff = inputs[key]["perturb"]["cutoff"]
         poscar_perturb = set_perturbation(
-            rlx_traj, path_slab, scale, cutoff, fix_bottom_height)
+            rlx_traj,
+            path_slab,
+            scale,
+            cutoff,
+            fix_bottom_height,
+        )
         os.makedirs(f'{dst}/initial', exist_ok=True)
         for file in os.listdir(dst):
             shutil.move(f'{dst}/{file}', f'{dst}/initial')

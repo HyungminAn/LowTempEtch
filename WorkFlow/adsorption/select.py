@@ -10,10 +10,10 @@ def select_slab_with_minimal_energy(key, output, **inputs):
 
     path_src = inputs[key]["paths"]["dst_2"]
     n_repeat = inputs[key]["mol_info"]["n_repeat"]
-    max_step = inputs["relax"]["max_steps"]
+    max_step = inputs["relax"]["options"]["max_steps"]
+    src = Path(path_src)
     for i in range(n_repeat):
-        src = f'{path_src}/{i}'
-        with open(f'{src}/thermo.dat', 'r') as f:
+        with open(src/f'{i}/thermo.dat', 'r') as f:
             last_line = f.readlines()[-1]
 
         step, energy, *_ = last_line.split()
@@ -30,7 +30,6 @@ def select_slab_with_minimal_energy(key, output, **inputs):
     output["E_slab"] = energy_save
 
     path_dst = inputs[key]["paths"]["dst_3"]
-    p_src = Path(f'{path_src}/{i_save}/POSCAR_relaxed')
     p_dst = Path(path_dst)
 
-    shutil.copy(p_src, p_dst)
+    shutil.copy(src/f'{i_save}/POSCAR_relaxed', p_dst)

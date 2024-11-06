@@ -1,3 +1,4 @@
+from pathlib import Path
 import os
 
 from ase.io import read, write
@@ -12,12 +13,12 @@ def remove_etchant_molecule(key, idx_reconst_dict, **inputs):
     Remove etchant molecules and write new POSCAR to calculate
     '''
     path_src = inputs[key]["paths"]["dst_2"]
-    format_rlx_trj = inputs["relax"]["path_extxyz"]
+    format_rlx_trj = inputs["relax"]["path"]["traj"]
     fix_height = inputs["constraint"]["fix_bottom_height"]
     path_dst = inputs[key]["paths"]["dst_3"]
 
     for i, idx_etchant in idx_reconst_dict.items():
-        src = f'{path_src}/{i}/{format_rlx_trj}'
+        src = Path(f'{path_src}/{i}/{format_rlx_trj}')
         poscar = read(src, index=-1)
 
         poscar_copy = poscar.copy()
@@ -33,7 +34,8 @@ def remove_etchant_molecule(key, idx_reconst_dict, **inputs):
             atom.index for atom in poscar if atom.position[2] <= fix_height
         ])
         poscar.set_constraint(c)
-        dst = f'{path_dst}/{i}'
-        if not os.path.exists(dst):
+
+        dst = Path(f'{path_dst}/{i}')
+        if not dst.exists():
             os.makedirs(dst, exist_ok=True)
-        write(f'{dst}/POSCAR', poscar, format='vasp')
+        write(dst/'POSCAR', poscar, format='vasp')

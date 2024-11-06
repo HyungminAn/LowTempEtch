@@ -25,7 +25,7 @@ def run(key, seed_max=1000000, **inputs):
 
     n_insert = inputs[key]["mol_info"]["n_insert"]
     n_repeat = inputs[key]["mol_info"]["n_repeat"]
-    path_lmp = inputs["relax"]["path_lmp_bin"]
+    path_lmp = inputs["relax"]["path"]["lmp_bin"]
     mol_name = inputs[key]["mol_info"]["name"]
     fix_height = inputs["constraint"]["fix_bottom_height"]
     run_short_MD = inputs[key]["mol_info"]["run_short_MD"]
@@ -42,10 +42,9 @@ def run(key, seed_max=1000000, **inputs):
     for i in range(n_repeat):
         dst = f'{path_dst}/{i}'
         p = Path(dst)
-        if p.is_dir():
-            continue
         p.mkdir(parents=True, exist_ok=True)
-        if p.glob(f'lammps_{i}.out'):
+        p_file = p / 'lammps.out'
+        if p_file.exists():
             continue
 
         write_lmp_input_insertion(
