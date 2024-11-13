@@ -1,12 +1,14 @@
 params:
-  mol_size: 3.150000000000001
-  n_mol: 6
   tolerance: 2.38
 
+  n_mol: 6
+  mol_size: 3.15
   layer_ADDI: 1.0
+
   n_HF: 20
   mol_size_HF: 1.5
   layer_HF: 0.5
+
 
 path:
   path_mol: /data2/andynn/LowTempEtch/03_gases/benchmark/chgTot/AsF5/POSCAR_relaxed
