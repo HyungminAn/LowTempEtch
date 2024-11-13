@@ -21,6 +21,7 @@ def main():
     with open(path_inputs, 'r') as f:
         inputs = yaml.load(f, Loader=yaml.SafeLoader)
 
+    # Adsorption
     output = {}
     make_slab_with_additive(output, **inputs)
     repeat_adsorption(output, **inputs)
