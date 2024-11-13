@@ -1,0 +1,68 @@
+#LAMMPS
+################################################################################
+#                                 Basic Input                                  #
+################################################################################
+units           metal     # K, bar, ps, A
+box             tilt large
+boundary        p p p
+newton          on
+
+read_data       input.data
+
+variable        m_Si       equal   28.0855
+variable        m_N        equal   14.0067
+variable        m_H        equal   1.0078
+variable        m_F        equal   18.9984
+
+mass        1   ${m_H}
+mass        2   ${m_N}
+mass        3   ${m_F}
+mass        4   ${m_Si}
+
+################################################################################
+#                                Pair potential                                #
+################################################################################
+variable        path_r0ab       string   "/data2/andynn/lammps_d3/13_rewrite_csv/r0ab_new.csv"
+variable        path_c6ab       string   "/data2/andynn/lammps_d3/13_rewrite_csv/d3_pars.csv"
+variable        cutoff_d3       equal   9000
+variable        cutoff_d3_CN    equal   1600
+variable        func_type       string  "pbe"
+variable        damping_type    string  "d3_damp_bj"
+variable        path_potential  string "/data2/shared_data/pretrained/7net_m3g/deployed_serial.pt"
+variable        element_list    string  "H N F Si"
+pair_style      hybrid/overlay  e3gnn   d3   ${cutoff_d3}  ${cutoff_d3_CN}  ${damping_type}
+pair_coeff      * *  e3gnn  ${path_potential}  ${element_list}
+pair_coeff      * *  d3     ${path_r0ab} ${path_c6ab} ${func_type} ${element_list}
+compute my_pressure_compute all pressure NULL virial pair/hybrid d3
+
+################################################################################
+#                                Slab settings                                 #
+################################################################################
+variable    fix_h       equal   4.0
+region      rFixed      block   INF INF INF INF 0.0 ${fix_h}
+group       gBottom     region  rFixed
+velocity    gBottom     set     0.0 0.0 0.0
+fix         frz_bot     gBottom     setforce    0.0 0.0 0.0
+
+################################################################################
+#                                     LOG                                      #
+################################################################################
+variable        log_step        equal   1
+thermo_style    custom          step pe vol press pxx pyy pzz pxy pyz pxz fmax
+thermo          ${log_step}
+
+dump            my_dump     all custom ${log_step} dump.lammps &
+                            id type element xu yu zu fx fy fz
+dump_modify     my_dump     sort id     element ${element_list}
+
+################################################################################
+#                                     Run                                      #
+################################################################################
+# min_style       quickmin
+# minimize        0 0.02  100000 100000
+run 0
+
+################################################################################
+#                                   Finalize                                   #
+################################################################################
+write_data      FINAL.coo

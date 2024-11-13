@@ -1,0 +1,32 @@
+area:
+  species_A: 5.877425e-20
+  species_B: 9.800830083333332e-20
+constants:
+  Pa_to_mTorr: 7.50062
+  amu_to_kg: 1.6605390666e-27
+  eV_to_J: 1.602176634e-19
+  kB: 8.617e-05
+  v0: 1000000000000.0
+name:
+  species_A: HF
+  species_B: IBr
+path_ads_E:
+  species_A:
+    1A: /data2/andynn/LowTempEtch/07_Equil_LayerThickness/03_bareSurface/prev_results/HF/plot/EffectiveAds/dat
+    LA_A: /data2/andynn/LowTempEtch/07_Equil_LayerThickness/04_HFonHF/HF/plot/EffectiveAds/dat
+    LA_B: /data2/andynn/LowTempEtch/07_Equil_LayerThickness/06_HFonADDI/results/IBr/plot/EffectiveAds/dat
+  species_B:
+    1B: /data2/andynn/LowTempEtch/07_Equil_LayerThickness/03_bareSurface/results/IBr/plot/EffectiveAds/dat
+    LB_A: /data2/andynn/LowTempEtch/07_Equil_LayerThickness/05_ADDIonHF/results/IBr/plot/EffectiveAds/dat
+    LB_B: /data2/andynn/LowTempEtch/07_Equil_LayerThickness/07_ADDIonADDI/results/IBr/plot/EffectiveAds/dat
+path_mass: /data2/andynn/LowTempEtch/07_Equil_LayerThickness/08_Calculate/mass.dat
+process_variables:
+  pressure:
+    species_A:
+      n_grid: 10
+    species_B:
+      n_grid: 10
+  temperature:
+    max: 300
+    min: 250
+    step: 100

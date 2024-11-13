@@ -1,0 +1,16 @@
+path:
+  path_poscar:  '/data2/andynn/LowTempEtch/07_Equil_LayerThickness/01_genCell/inputs/POSCAR'  # path to the POSCAR file
+  path_mol:  './mol.xyz'  # path to the molecule file
+  path_input: './my_input.inp' # path to the input file of packmol
+  path_output: './my_output.xyz' # path to the output file of packmol
+  path_slab_xyz: './slab.xyz' # path to the slab file
+  path_packmol: '/home/andynn/packmol-20.14.4-docs1/packmol'
+  path_log:  './LOG'
+
+params:
+  mol_name: null
+  mol_size: null  # layer thickness for moleculae layer, in Angstrom
+  n_mol:  null  # number of molecules to insert
+  test_n_mol: true
+  repeat: 1  # number of times to repeat runs
+  to_merge: True

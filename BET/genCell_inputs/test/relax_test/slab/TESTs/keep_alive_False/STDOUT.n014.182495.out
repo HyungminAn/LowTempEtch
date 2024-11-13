@@ -1,0 +1,3 @@
+GPU 3 assigned to the job
+CUDA_VISIBLE_DEVICES=3
+H N F Si

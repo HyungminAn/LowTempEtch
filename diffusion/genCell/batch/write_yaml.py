@@ -10,7 +10,7 @@ def read_data_as_dict(path):
 
 
 def main():
-    path_src = "/data2/andynn/LowTempEtch/07_Equil_LayerThickness/01_genCell/results"
+    path_src = "/data2/andynn/LowTempEtch/03_gases/benchmark/chgTot"
     mol_list = [
         i for i in os.listdir(path_src)
         if os.path.isdir(os.path.join(path_src, i))]
@@ -33,7 +33,6 @@ def main():
         data['params']['n_HF'] = 20
         data['params']['mol_size_HF'] = 1.5
         data['params']['layer_HF'] = n_layer_dict['HF'][mol]
-
         data['path']['path_HF'] = "/data2/andynn/LowTempEtch/07_Equil_LayerThickness/01_genCell/prev_results/HF/mol.xyz"
 
         with open((f"{dst}/input.yaml"), "w") as f:

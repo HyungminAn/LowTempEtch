@@ -1,0 +1,5 @@
+mol_size: 2.7  # layer thickness for moleculae layer, in Angstrom
+tolerance:  2.0  # tolerance for the distance between atoms, in Angstrom
+path_poscar:  '/data2/andynn/LowTempEtch/07_Equil_LayerThickness/01_genCell/inputs/POSCAR'  # path to the POSCAR file
+path_mol:  './mol.xyz'  # path to the molecule file
+n_mol:  7  # number of molecules to insert

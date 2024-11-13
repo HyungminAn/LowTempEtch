@@ -1,0 +1,79 @@
+log /dev/stdout
+# (written by ASE)
+clear
+variable dump_file string "/data2/andynn/LowTempEtch/07_Equil_LayerThickness/01_genCell/inputs/test/relax_test/test/debug/trj_lammps0000137nkv9fxn.bin"
+variable data_file string "/data2/andynn/LowTempEtch/07_Equil_LayerThickness/01_genCell/inputs/test/relax_test/test/debug/data_lammps0000135rukvm1h"
+atom_style atomic
+units metal
+boundary p p f
+box tilt large
+atom_modify sort 0 0.0
+
+read_data /data2/andynn/LowTempEtch/07_Equil_LayerThickness/01_genCell/inputs/test/relax_test/test/debug/data_lammps0000135rukvm1h
+Reading data file ...
+  triclinic box = (0 0 0) to (11.65351 10.092235 30) with tilt (0 0 0)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  190 atoms
+  read_data CPU = 0.001 seconds
+
+### interactions
+pair_style d3 9000 1600 d3_damp_bj
+pair_coeff * * /data2/andynn/lammps_d3/13_rewrite_csv/r0ab_new.csv /data2/andynn/lammps_d3/13_rewrite_csv/d3_pars.csv pbe H N F Si
+mass 1 1.008000
+mass 2 14.007000
+mass 3 18.998403
+mass 4 28.085000
+
+### run
+fix fix_nve all nve
+dump dump_all all custom 1 /data2/andynn/LowTempEtch/07_Equil_LayerThickness/01_genCell/inputs/test/relax_test/test/debug/trj_lammps0000137nkv9fxn.bin id type x y z vx vy vz fx fy fz
+thermo_style custom step temp press cpu pxx pyy pzz pxy pxz pyz ke pe etotal vol lx ly lz atoms
+thermo_modify flush yes format float %23.16g
+thermo 1
+run 0
+Neighbor list info ...
+  update every 1 steps, delay 10 steps, check yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 0
+  ghost atom cutoff = 0
+  binsize = 11.65351, bins = 1 1 3
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair d3, perpetual
+      attributes: full, newton on
+      pair build: full/bin/atomonly
+      stencil: full/bin/3d
+      bin: standard
+WARNING: Communication cutoff is 0.0. No ghost atoms will be generated. Atoms may get lost. (src/comm_brick.cpp:210)
+Per MPI rank memory allocation (min/avg/max) = 3.189 | 3.189 | 3.189 Mbytes
+   Step          Temp          Press           CPU            Pxx            Pyy            Pzz            Pxy            Pxz            Pyz           KinEng         PotEng         TotEng         Volume           Lx             Ly             Lz          Atoms   
+         0                        0      -4365.304264104781                       0       -4664.54709833932      -4650.644744064954      -3780.720949910071    -0.03814197019320112       1.190247256335499      0.5560134687422452                       0      -9.550007519224518      -9.550007519224518       3528.298846321914        11.6535095964132        10.0922353537395                      30        190 
+Loop time of 5.64e-07 on 1 procs for 0 steps with 190 atoms
+
+177.3% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 5.64e-07   |            |       |100.00
+
+Nlocal:            190 ave         190 max         190 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:              4 ave           4 max           4 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+FullNghs:            0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 0
+Ave neighs/atom = 0
+Neighbor list builds = 0
+Dangerous builds = 0
+print "__end_of_ase_invoked_calculation__"
+__end_of_ase_invoked_calculation__

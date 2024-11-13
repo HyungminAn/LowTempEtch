@@ -1,0 +1,26 @@
+path:
+  pot:
+    7net:
+      m3g: /data2/shared_data/pretrained/7net_m3g/checkpoint_best.pth
+      m3g_c55: /data2/shared_data/pretrained/7net_m3g_c55/checkpoint_best.pth
+      chg: /data2/shared_data/pretrained/7net_chg/checkpoint_best.pth
+      chgTot: /data2/shared_data/pretrained/7net_chgTot/checkpoint_best.pth
+  d3:
+    r0ab: /data2/andynn/lammps_d3/13_rewrite_csv/r0ab_new.csv
+    c6ab: /data2/andynn/lammps_d3/13_rewrite_csv/d3_pars.csv
+  traj: "opt.extxyz"
+  output: "POSCAR_relaxed"
+  lmp_bin: /TGM/Apps/ANACONDA/2022.05/envs/pub_sevenn/bin/lmp_sevenn_d3
+  log: 'log'
+
+model: 'm3g'
+
+options:
+  opt_type: LBFGS
+  filter_type: FrechetCellFilter
+  cell_relax: False
+  fix_symmetry: False
+  max_steps: 1000
+  fmax: 0.02
+  lmp_input:
+    boundary: 'p p f'

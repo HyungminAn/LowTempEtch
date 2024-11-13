@@ -1,0 +1,3 @@
+CUDA_VISIBLE_DEVICES=
+GNN model m3g loaded: /data2/shared_data/pretrained/7net_m3g/checkpoint_best.pth
+H N F Si

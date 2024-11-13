@@ -1,0 +1,7 @@
+tolerance 2.0
+filetype xyz
+output ./my_output.xyz
+structure ./mol.xyz
+  number 8
+  inside box 1.0 1.0 10.4 10.7 9.1 12.9
+end structure

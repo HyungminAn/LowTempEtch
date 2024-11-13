@@ -1,0 +1,40 @@
+/home/andynn/.local/lib/python3.9/site-packages/ase/calculators/lammpsrun.py:308: UserWarning: semi-periodic ASE cell detected - translation to proper LAMMPS input cell might fail
+  warnings.warn(
+Traceback (most recent call last):
+  File "/data2/andynn/LowTempEtch/00_codes/relax_gnn_d3.py", line 255, in <module>
+    main()
+  File "/data2/andynn/LowTempEtch/00_codes/relax_gnn_d3.py", line 249, in main
+    atom_relax(atoms, logfile=logfile, **inputs)
+  File "/data2/andynn/LowTempEtch/00_codes/relax_gnn_d3.py", line 162, in atom_relax
+    opt.run(fmax=fmax, steps=steps)
+  File "/home/andynn/.local/lib/python3.9/site-packages/ase/optimize/optimize.py", line 420, in run
+    return Dynamics.run(self, steps=steps)
+  File "/home/andynn/.local/lib/python3.9/site-packages/ase/optimize/optimize.py", line 271, in run
+    for converged in Dynamics.irun(self, steps=steps):
+  File "/home/andynn/.local/lib/python3.9/site-packages/ase/optimize/optimize.py", line 246, in irun
+    self.log()
+  File "/home/andynn/.local/lib/python3.9/site-packages/ase/optimize/optimize.py", line 430, in log
+    forces = self.optimizable.get_forces()
+  File "/home/andynn/.local/lib/python3.9/site-packages/ase/optimize/optimize.py", line 35, in get_forces
+    return self.atoms.get_forces()
+  File "/home/andynn/.local/lib/python3.9/site-packages/ase/atoms.py", line 812, in get_forces
+    forces = self._calc.get_forces(self)
+  File "/home/andynn/.local/lib/python3.9/site-packages/ase/calculators/abc.py", line 30, in get_forces
+    return self.get_property('forces', atoms)
+  File "/home/andynn/.local/lib/python3.9/site-packages/ase/calculators/calculator.py", line 538, in get_property
+    self.calculate(atoms, [name], system_changes)
+  File "/home/andynn/.local/lib/python3.9/site-packages/ase/calculators/mixing.py", line 103, in calculate
+    self.results = self.mixer.get_properties(properties, atoms)
+  File "/home/andynn/.local/lib/python3.9/site-packages/ase/calculators/mixing.py", line 58, in get_properties
+    get_property(prop)
+  File "/home/andynn/.local/lib/python3.9/site-packages/ase/calculators/mixing.py", line 39, in get_property
+    contribs = [calc.get_property(prop, atoms) for calc in self.calcs]
+  File "/home/andynn/.local/lib/python3.9/site-packages/ase/calculators/mixing.py", line 39, in <listcomp>
+    contribs = [calc.get_property(prop, atoms) for calc in self.calcs]
+  File "/home/andynn/.local/lib/python3.9/site-packages/ase/calculators/calculator.py", line 538, in get_property
+    self.calculate(atoms, [name], system_changes)
+  File "/home/andynn/.local/lib/python3.9/site-packages/ase/calculators/lammpsrun.py", line 250, in calculate
+    self.run()
+  File "/home/andynn/.local/lib/python3.9/site-packages/ase/calculators/lammpsrun.py", line 419, in run
+    raise RuntimeError("Failed to retrieve any thermo_style-output")
+RuntimeError: Failed to retrieve any thermo_style-output

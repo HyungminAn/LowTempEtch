@@ -1,0 +1,12 @@
+path_pot: /data2/shared_data/pretrained/7net_m3g/deployed_serial.pt
+opt_type: LBFGS
+filter_type: FrechetCellFilter
+cell_relax: False
+fix_symmetry: False
+path_extxyz: opt.extxyz
+path_relaxed: POSCAR_relaxed
+path_lmp_bin: /TGM/Apps/ANACONDA/2022.05/envs/pub_sevenn/bin/lmp_sevenn_d3
+max_steps: 1000
+fmax: 0.02
+lmp_input:
+  boundary: 'p p f'

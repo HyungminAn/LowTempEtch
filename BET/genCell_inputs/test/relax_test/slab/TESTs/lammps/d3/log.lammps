@@ -1,0 +1,137 @@
+LAMMPS (23 Jun 2022 - Update 4)
+#LAMMPS
+################################################################################
+#                                 Basic Input                                  #
+################################################################################
+units           metal     # K, bar, ps, A
+box             tilt large
+boundary        p p p
+newton          on
+
+read_data       input.data
+Reading data file ...
+  triclinic box = (0 0 0) to (11.65351 10.092235 24.290025) with tilt (0 0 0)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  136 atoms
+  read_data CPU = 0.002 seconds
+
+variable        m_Si       equal   28.0855
+variable        m_N        equal   14.0067
+variable        m_H        equal   1.0078
+variable        m_F        equal   18.9984
+
+mass        1   ${m_H}
+mass        1   1.0078
+mass        2   ${m_N}
+mass        2   14.0067
+mass        3   ${m_F}
+mass        3   18.9984
+mass        4   ${m_Si}
+mass        4   28.0855
+
+################################################################################
+#                                Pair potential                                #
+################################################################################
+variable        path_r0ab       string   "/data2/andynn/lammps_d3/13_rewrite_csv/r0ab_new.csv"
+variable        path_c6ab       string   "/data2/andynn/lammps_d3/13_rewrite_csv/d3_pars.csv"
+variable        cutoff_d3       equal   9000
+variable        cutoff_d3_CN    equal   1600
+variable        func_type       string  "pbe"
+variable        damping_type    string  "d3_damp_bj"
+# variable        path_potential  string "/data2/shared_data/pretrained/7net_m3g/deployed_serial.pt"
+variable        element_list    string  "H N F Si"
+# pair_style      hybrid/overlay  e3gnn   d3   ${cutoff_d3}  ${cutoff_d3_CN}  ${damping_type}
+pair_style      d3   ${cutoff_d3}  ${cutoff_d3_CN}  ${damping_type}
+pair_style      d3   9000  ${cutoff_d3_CN}  ${damping_type}
+pair_style      d3   9000  1600  ${damping_type}
+pair_style      d3   9000  1600  d3_damp_bj
+pair_coeff      * *  ${path_r0ab} ${path_c6ab} ${func_type} ${element_list}
+pair_coeff      * *  /data2/andynn/lammps_d3/13_rewrite_csv/r0ab_new.csv ${path_c6ab} ${func_type} ${element_list}
+pair_coeff      * *  /data2/andynn/lammps_d3/13_rewrite_csv/r0ab_new.csv /data2/andynn/lammps_d3/13_rewrite_csv/d3_pars.csv ${func_type} ${element_list}
+pair_coeff      * *  /data2/andynn/lammps_d3/13_rewrite_csv/r0ab_new.csv /data2/andynn/lammps_d3/13_rewrite_csv/d3_pars.csv pbe ${element_list}
+pair_coeff      * *  /data2/andynn/lammps_d3/13_rewrite_csv/r0ab_new.csv /data2/andynn/lammps_d3/13_rewrite_csv/d3_pars.csv pbe H N F Si
+
+################################################################################
+#                                Slab settings                                 #
+################################################################################
+variable    fix_h       equal   4.0
+region      rFixed      block   INF INF INF INF 0.0 ${fix_h}
+region      rFixed      block   INF INF INF INF 0.0 4
+group       gBottom     region  rFixed
+68 atoms in group gBottom
+velocity    gBottom     set     0.0 0.0 0.0
+fix         frz_bot     gBottom     setforce    0.0 0.0 0.0
+
+################################################################################
+#                                     LOG                                      #
+################################################################################
+variable        log_step        equal   1
+thermo_style    custom          step pe vol press pxx pyy pzz pxy pyz pxz fmax
+thermo          ${log_step}
+thermo          1
+
+dump            my_dump     all custom ${log_step} dump.lammps                             id type element xu yu zu fx fy fz
+dump            my_dump     all custom 1 dump.lammps                             id type element xu yu zu fx fy fz
+dump_modify     my_dump     sort id     element ${element_list}
+dump_modify     my_dump     sort id     element H N F Si
+
+################################################################################
+#                                     Run                                      #
+################################################################################
+# min_style       quickmin
+# minimize        0 0.02  100000 100000
+run 0
+WARNING: No fixes with time integration, atoms won't move (src/verlet.cpp:60)
+Neighbor list info ...
+  update every 1 steps, delay 10 steps, check yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 0
+  ghost atom cutoff = 0
+  binsize = 11.65351, bins = 1 1 3
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair d3, perpetual
+      attributes: full, newton on
+      pair build: full/bin/atomonly
+      stencil: full/bin/3d
+      bin: standard
+WARNING: No pairwise cutoff or binsize set. Atom sorting therefore disabled. (src/atom.cpp:2142)
+WARNING: Communication cutoff is 0.0. No ghost atoms will be generated. Atoms may get lost. (src/comm_brick.cpp:210)
+Per MPI rank memory allocation (min/avg/max) = 4.2 | 4.2 | 4.2 Mbytes
+   Step         PotEng         Volume         Press           Pxx            Pyy            Pzz            Pxy            Pyz            Pxz            Fmax     
+         0  -7.1262809      2856.7488     -3951.4378     -4358.4487     -4358.4487     -3137.416      -3.2523372e-13 -6.0114609e-12  2.3479465e-12  0.055442861  
+Loop time of 8.2e-07 on 1 procs for 0 steps with 136 atoms
+
+122.0% CPU use with 1 MPI tasks x no OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 8.2e-07    |            |       |100.00
+
+Nlocal:            136 ave         136 max         136 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:             30 ave          30 max          30 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+FullNghs:            0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 0
+Ave neighs/atom = 0
+Neighbor list builds = 0
+Dangerous builds = 0
+
+################################################################################
+#                                   Finalize                                   #
+################################################################################
+write_data      FINAL.coo
+System init for write_data ...
+WARNING: Communication cutoff is 0.0. No ghost atoms will be generated. Atoms may get lost. (src/comm_brick.cpp:210)
+Total wall time: 0:00:00

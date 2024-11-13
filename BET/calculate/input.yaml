@@ -1,0 +1,45 @@
+################################################################################
+#                                  Constants                                   #
+################################################################################
+v0: 1.0E+12  # prefactor in rate constant (s^-1)
+kB: 8.617E-5  # Boltzmann constant (eV/K)
+amu_to_kg: 1.66053906660E-27  # atomic mass unit to kg
+eV_to_J: 1.602176634E-19  # electron volt to Joule
+Pa_to_mTorr: 7.50062  # Pascal to miliTorr
+
+################################################################################
+#                               Gas information                                #
+################################################################################
+name:
+  species_A: HF
+  species_B: IF5
+area:
+  species_A: 5.877425E-20  # m^2
+  species_B: 23.5097E-20  # m^2
+
+path_mass: "/data2/andynn/LowTempEtch/07_Equil_LayerThickness/08_Calculate/mass.dat"
+
+path_ads_E:
+  src: "/data2/andynn/LowTempEtch/07_Equil_LayerThickness"
+  species_A:
+    1A: "%(src)s/03_bareSurface/%(species_A)s/plot/EffectiveAds/dat"
+    LA_A: "%(src)s/04_HFonHF/%(species_A)s/plot/EffectiveAds/dat"
+    LA_B: "%(src)s/06_HFonADDI/%(species_B)s/plot/EffectiveAds/dat"
+  species_B:
+    1B: "%(src)s/03_bareSurface/%(species_B)s/plot/EffectiveAds/dat"
+    LB_A: "%(src)s/05_ADDIonHF/%(species_B)s/plot/EffectiveAds/dat"
+    LB_B: "%(src)s/07_ADDIonADDI/%(species_B)s/plot/EffectiveAds/dat"
+
+################################################################################
+#                              Process variables                               #
+################################################################################
+temperature:
+  min: 250
+  max: 300
+  step: 100
+
+pressure:
+  species_A:
+    n_grid: 10
+  species_B:
+    n_grid: 10

@@ -1,0 +1,13 @@
+temperature:
+  min: 100
+  max: 900
+  step: 100
+
+pressure:
+  min: 0.0
+  max: 1.0
+  step: 0.05
+
+path:
+  1A: "/data2/andynn/LowTempEtch/07_Equil_LayerThickness/03_bareSurface/IF5/plot/EffectiveAds/dat"
+  LA: "/data2/andynn/LowTempEtch/07_Equil_LayerThickness/07_ADDIonADDI/IF5/plot/EffectiveAds/dat"
