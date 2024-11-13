@@ -177,11 +177,28 @@ class CellGenerator():
 
     def _write(self):
         result = read(self.path_output)
-        z_max = result.get_positions()[:, 2].max()
+        z_min = result.get_positions()[:, 2].min()
         cell = read(self.path_poscar).get_cell()
-        if z_max + 10 > cell[2, 2]:
-            cell[2, 2] = z_max + 10
+
+        if z_min < 0:
+            z_shift = -z_min
+            pos = result.get_positions()
+            pos[:, 2] += z_shift
+            result.set_positions(pos)
+
+        z_max = result.get_positions()[:, 2].max()
+        z_shift = cell[2, 2] - z_max
+        if 0 < z_shift < 1:
+            pos = result.get_positions()
+            pos[:, 2] += z_shift
+            result.set_positions(pos)
+
+        z_max = result.get_positions()[:, 2].max()
+        if z_max + 20 > cell[2, 2]:
+            cell[2, 2] = z_max + 20
         result.set_cell(cell)
+        result.wrap()
+
         z_fix = 4.0
         c = FixAtoms(indices=[
             atom.index for atom in result if atom.position[2] < z_fix])
