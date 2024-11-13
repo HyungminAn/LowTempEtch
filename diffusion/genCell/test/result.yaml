@@ -1,0 +1,17 @@
+params:
+  inc_size: 0.5
+  layer_ADDI: 1.0
+  layer_HF: 0.5
+  mol_size: 3.150000000000001
+  mol_size_HF: 1.5
+  n_HF: 20
+  n_mol: 6
+  tolerance: 2.38
+path:
+  path_HF: /data2/andynn/LowTempEtch/03_gases/benchmark/chgTot/HF/POSCAR_relaxed
+  path_input: ./my_input.inp
+  path_log: ./LOG
+  path_mol: /data2/andynn/LowTempEtch/03_gases/benchmark/chgTot/AsF5/POSCAR_relaxed
+  path_output: ./my_output.xyz
+  path_packmol: /home/andynn/packmol-20.14.4-docs1/packmol
+  path_poscar: /data2/andynn/LowTempEtch/02_slab/AFS/chgTot/relax/POSCAR_relaxed

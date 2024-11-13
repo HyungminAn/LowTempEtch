@@ -43,10 +43,17 @@ def write_packmol_input(**inputs):
     path_mol = inputs['path']['path_mol']
     if not os.path.exists(path_mol):
         raise FileNotFoundError(f"File not found: {path_mol}")
+    mol = read(path_mol)
+    write("./mol.xyz", mol, format='xyz')
+    path_mol = "./mol.xyz"
+
     path_input = inputs['path']['path_input']
     path_output = inputs['path']['path_output']
 
     path_HF = inputs['path']['path_HF']
+    poscar_HF = read(path_HF)
+    write("./HF.xyz", poscar_HF, format='xyz')
+    path_HF = "./HF.xyz"
 
     x_lim, y_lim, z_lim = get_cell_params(path_poscar)
     pbc_padding = tolerance / 2
