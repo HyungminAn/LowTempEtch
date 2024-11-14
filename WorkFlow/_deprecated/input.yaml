@@ -1,0 +1,106 @@
+dst: "./run"
+
+adsorption:
+  additive:
+    paths:
+      slab: "/data2/andynn/LowTempEtch/02_slab/AFS/chgTot/relax/POSCAR_relaxed"
+      mol: "/data2/andynn/LowTempEtch/03_gases/benchmark/chgTot/IF5/POSCAR_relaxed"
+      dst_1: "%(dst)s/01_insert_additive"
+      dst_2: "%(dst)s/02_relax_with_inserted_additive"
+      dst_3: "%(dst)s/03_POSCAR_with_additive"
+
+    mol_info:
+      name: "IF5"
+      n_insert: 1
+      n_repeat: 1
+      run_short_MD: False
+      md_time: 10  # ps
+      md_temp: 150
+
+    perturb:
+      flag: False
+      scale: 0.5
+      cutoff: 3.0
+
+  etchant:
+    paths:
+      mol: "/data2/andynn/LowTempEtch/03_gases/benchmark/chgTot/HF/POSCAR_relaxed"
+      slab: "%(dst)s/03_POSCAR_with_additive"
+      dst_1: "%(dst)s/04_insert_etchant"
+      dst_2: "%(dst)s/05_relax_with_inserted_etchant"
+      dst_3: "%(dst)s/06_relax_reconstructed_slab"
+
+    mol_info:
+      name: "HF"
+      n_insert: 1
+      n_repeat: 5
+      run_short_MD: False
+      md_time: 10  # ps
+      md_temp: 150
+
+    perturb:
+      flag: False
+      scale: 0.5
+      cutoff: 3.0
+
+constraint:
+  fix_bottom_height: 4.0
+
+relax:
+  path:
+    pot:
+      7net:
+        m3g: /data2/shared_data/pretrained/7net_m3g/checkpoint_best.pth
+        m3g_c55: /data2/shared_data/pretrained/7net_m3g_c55/checkpoint_best.pth
+        chg: /data2/shared_data/pretrained/7net_chg/checkpoint_best.pth
+        chgTot: /data2/shared_data/pretrained/7net_chgTot/checkpoint_best.pth
+        chgTot_l3i3: /data2/shared_data/pretrained_experimental/7net_chgTot_l3i3/checkpoint_best.pth
+
+        chgTot_diet: /data2/shared_data/pretrained_experimental/7net_chgTot_diet/checkpoint_best.pth
+        m3g_elem: /data2/shared_data/pretrained_experimental/7net_m3g_elem/checkpoint_best.pth
+        m3g+hme21: /data2/shared_data/pretrained_experimental/7net_m3g+hme21/checkpoint_best.pth
+        m3g+hme21_l3i3: /data2/shared_data/pretrained_experimental/7net_m3g+hme21_l3i3/checkpoint_best.pth
+        m3g_l2i3_ch128: /data2/shared_data/pretrained_experimental/7net_m3g_l2i3_ch128/checkpoint_best.pth
+        m3g_l2i3_ch64: /data2/shared_data/pretrained_experimental/7net_m3g_l2i3_ch64/checkpoint_best.pth
+        m3g_l3i3: /data2/shared_data/pretrained_experimental/7net_m3g_l3i3/checkpoint_best.pth
+        m3g_l3i3_n: /data2/shared_data/pretrained_experimental/7net_m3g_l3i3_n/checkpoint_best.pth
+        m3g_l3i3_rand1: /data2/shared_data/pretrained_experimental/7net_m3g_l3i3_rand1/checkpoint_best.pth
+        m3g_l3i3_rand2: /data2/shared_data/pretrained_experimental/7net_m3g_l3i3_rand2/checkpoint_best.pth
+        m3g_n: /data2/shared_data/pretrained_experimental/7net_m3g_n/checkpoint_best.pth
+        m3g_rand1: /data2/shared_data/pretrained_experimental/7net_m3g_rand1/checkpoint_best.pth
+        m3g_rand2: /data2/shared_data/pretrained_experimental/7net_m3g_rand2/checkpoint_best.pth
+        m3g_rand3: /data2/shared_data/pretrained_experimental/7net_m3g_rand3/checkpoint_best.pth
+        m3g_rand4: /data2/shared_data/pretrained_experimental/7net_m3g_rand4/checkpoint_best.pth
+        m3g_sc_neq: /data2/shared_data/pretrained_experimental/7net_m3g_sc_neq/checkpoint_best.pth
+        m3g_stp: /data2/shared_data/pretrained_experimental/7net_m3g_stp/checkpoint_best.pth
+        m3g_stp_nl0c5: /data2/shared_data/pretrained_experimental/7net_m3g_stp_nl0c5/checkpoint_best.pth
+
+    d3:
+      r0ab: /data2/andynn/lammps_d3/13_rewrite_csv/r0ab_new.csv
+      c6ab: /data2/andynn/lammps_d3/13_rewrite_csv/d3_pars.csv
+    traj: "opt.extxyz"
+    output: "POSCAR_relaxed"
+    lmp_bin: /TGM/Apps/ANACONDA/2022.05/envs/pub_sevenn/bin/lmp_sevenn_d3
+    log: 'log'
+
+  model: 'chgTot'
+
+  include_d3: False
+
+  options:
+    opt_type: FIRE
+    filter_type: FrechetCellFilter
+    filter_options:
+      hydrostatic_strain: False
+      constant_volume: False
+      scalar_pressure: 0.0
+    cell_relax: False
+    fix_symmetry: False
+    max_steps: 1000
+    fmax: 0.02
+    lmp_input:
+      boundary: 'p p p'
+
+plot:
+  x_min: null
+  x_max: null
