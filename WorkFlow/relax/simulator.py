@@ -181,6 +181,7 @@ class RelaxSimulator():
         '''
         self.logger = RelaxLogger()
         self.dst = Path(path_dst)
+        os.makedirs(self.dst, exist_ok=True)
         with open(self.dst/'log', 'w') as logfile:
             self.logger._set_logfile(logfile)
             self._load_atoms(poscar_path)
