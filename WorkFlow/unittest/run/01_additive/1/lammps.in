@@ -52,7 +52,7 @@ group       gMove      region  rMove
 velocity    gMove      create ${T_nvt} ${SEEDS} dist gaussian
 
 
-variable    h_reflect   equal   32.142611
+variable    h_reflect   equal   32.979895
 
 fix         top         all wall/reflect zhi ${h_reflect}
 fix         my_NVT      gMove    nvt     temp    ${T_nvt} ${T_nvt} 0.1
