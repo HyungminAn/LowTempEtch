@@ -8,6 +8,7 @@ import yaml
 
 from utils.log import log_function_call  # noqa: E402
 from adsorption.simulator import AdsorptionSimulator
+from diffusion.simulator import DiffusionSimulator
 
 
 @log_function_call
@@ -21,6 +22,9 @@ def main():
 
     adsRunner = AdsorptionSimulator(inputs)
     adsRunner.run()
+
+    diffRunner = DiffusionSimulator(inputs, adsRunner.slab)
+    diffRunner.run()
 
 
 if __name__ == "__main__":

@@ -29,10 +29,10 @@ adsorption:
     time: 1  # ps
     temp: 150  # K
 
-  perturb:
-    flag: False
-    scale: 0.5
-    cutoff: 3.0
+diffusion:
+  n_repeat: 5
+  md_temp: [250, 300, 350, 400]
+  md_time: 10  # ps
 
 constraint:
   fix_bottom_height: 4.0
