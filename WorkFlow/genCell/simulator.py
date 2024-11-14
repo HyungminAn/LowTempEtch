@@ -46,8 +46,12 @@ class CellGenerator():
         self.mol_size = _get_mol_size(self.path_mol)
         self.mol_size_HF = _get_mol_size(self.path_HF)
 
-        self.n_mol = self._get_mol_number(self.path_mol, self.mol_size)
-        self.n_HF = self._get_mol_number(self.path_HF, self.mol_size_HF)
+        self.n_mol = inputs['params'].get('n_mol_additive')
+        self.n_HF = inputs['params'].get('n_mol_HF')
+        if self.n_mol is None:
+            self.n_mol = self._get_mol_number(self.path_mol, self.mol_size)
+        if self.n_HF is None:
+            self.n_HF = self._get_mol_number(self.path_HF, self.mol_size_HF)
 
         self.inc_size = 0
         if inputs['path'].get('path_dst'):
@@ -64,6 +68,7 @@ class CellGenerator():
             self._write_packmol_input()
             result = _run_packmol(self.path_packmol, self.path_input, self.path_log)
         with open("result.yaml", "w") as f:
+            self.dst = str(self.dst)
             yaml.dump(self.__dict__, f)
         self._write()
 
@@ -192,7 +197,7 @@ class CellGenerator():
         z_min = result.get_positions()[:, 2].min()
         cell = read(self.path_poscar).get_cell()
 
-        if z_min < 0:
+        if z_min < 0 or z_min > 0:
             z_shift = -z_min
             pos = result.get_positions()
             pos[:, 2] += z_shift

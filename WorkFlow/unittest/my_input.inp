@@ -1,0 +1,15 @@
+tolerance 2.38
+filetype xyz
+pbc 11.6531699554688 10.0919412160536 38.509432000000004
+output ./my_output.xyz
+randominitialpoint
+structure ./slab.xyz
+  number 1
+  center
+  fixed 5.8265849777344 5.0459706080268 10.952863983964765 .0 .0 .0
+end structure
+structure ./HF.xyz
+  number 1
+  inside box 0.0 0.0 21.9 11.7 10.1 31.4
+end structure
+seed -1

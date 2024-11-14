@@ -44,6 +44,7 @@ class CellGenerator():
         self.n_HF = self._get_mol_number(self.path_HF, self.mol_size_HF)
 
         self.inc_size = 0
+        self.dst = 'POSCAR'
 
     def generate(self):
         self._write_packmol_input()
@@ -203,8 +204,8 @@ class CellGenerator():
         c = FixAtoms(indices=[
             atom.index for atom in result if atom.position[2] < z_fix])
         result.set_constraint(c)
-        print(f"Writing the final structure to POSCAR_merged")
-        write("POSCAR_merged", result, format='vasp', sort=True)
+        print(f"Writing the final structure to {self.dst}")
+        write(self.dst, result, format='vasp', sort=True)
 
 
 def _get_cell_params(path_poscar):
