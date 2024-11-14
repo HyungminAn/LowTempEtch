@@ -7,9 +7,7 @@ sys.path.append(str(script_directory))
 import yaml
 
 from utils.log import log_function_call  # noqa: E402
-from adsorption.make_slab_additive import make_slab_with_additive  # noqa: E402
-from adsorption.repeat_adsorption import repeat_adsorption  # noqa: E402
-from adsorption.summarize import summarize_results  # noqa: E402
+from adsorption.simulator import AdsorptionSimulator
 
 
 @log_function_call
@@ -21,11 +19,8 @@ def main():
     with open(path_inputs, 'r') as f:
         inputs = yaml.load(f, Loader=yaml.SafeLoader)
 
-    # Adsorption
-    output = {}
-    make_slab_with_additive(output, **inputs)
-    repeat_adsorption(output, **inputs)
-    summarize_results(output, **inputs)
+    adsRunner = AdsorptionSimulator(inputs)
+    adsRunner.run()
 
 
 if __name__ == "__main__":
