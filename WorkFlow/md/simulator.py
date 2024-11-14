@@ -52,7 +52,7 @@ class MolecularDynamicsSimulator():
 #########################################################
 units           metal     # K, bar, ps, A
 box             tilt large
-boundary        p p f
+boundary        p p p
 newton          on
 read_data       input.data
 ''')
@@ -109,7 +109,7 @@ velocity    gMove      create ${T_nvt} ${SEEDS} dist gaussian
 variable    h_reflect   equal   {reflect_z}
 ''')
         line += ('''
-fix         top         all wall/reflect zhi ${h_reflect}
+#fix         top         all wall/reflect zhi ${h_reflect}
 fix         my_NVT      gMove    nvt     temp    ${T_nvt} ${T_nvt} 0.1
 
 #########################################################

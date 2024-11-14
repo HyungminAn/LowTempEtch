@@ -31,10 +31,6 @@ class AdsorptionSimulator():
         self.md_time = inputs['adsorption']['md']['time']
         self.md_temp = inputs['adsorption']['md']['temp']
 
-        self.perturb_flag = inputs['adsorption']['perturb']['flag']
-        self.perturb_scale = inputs['adsorption']['perturb']['scale']
-        self.perturb_cutoff = inputs['adsorption']['perturb']['cutoff']
-
         self.fix_h = inputs['constraint']['fix_bottom_height']
 
         self.cellgen_tolerance = inputs['cell_generation']['tolerance']

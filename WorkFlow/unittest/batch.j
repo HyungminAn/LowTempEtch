@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1         # Cores per node
-#SBATCH --partition=gpu2          # Partition name (skylake)
+#SBATCH --partition=gpu          # Partition name (skylake)
 ##
 #SBATCH --job-name="test"
 #SBATCH --time=02-00:00              # Runtime limit: Day-HH:MM
