@@ -1,0 +1,174 @@
+LAMMPS (2 Aug 2023 - Update 3)
+  using 1 OpenMP thread(s) per MPI task
+
+#########################################################
+#                      Basic Input                      #
+#########################################################
+units           metal     # K, bar, ps, A
+box             tilt large
+
+The 'box' command has been removed and will be ignored
+
+boundary        p p f
+newton          on
+read_data       input.data
+Reading data file ...
+  orthogonal box = (0 0 0) to (11.65317 10.091941 37.11894)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  178 atoms
+  read_data CPU = 0.001 seconds
+mass        1   18.998403163
+mass        2   1.008
+mass        3   126.90447
+mass        4   14.007
+mass        5   28.085
+
+variable        element_list    string  "F H I N Si"
+
+#########################################################
+#                SEVENNET-0 + D3  hybrid                #
+#########################################################
+pair_style      hybrid/overlay      e3gnn    d3 9000 1600 damp_bj pbe
+PairE3GNN using device : CUDA
+pair_coeff      * * e3gnn ${path_potential}  ${element_list}
+pair_coeff      * * e3gnn /data2/shared_data/pretrained/7net_chgTot/deployed_serial.pt  ${element_list}
+pair_coeff      * * e3gnn /data2/shared_data/pretrained/7net_chgTot/deployed_serial.pt  F H I N Si
+Chemical specie 'F' is assigned to type 1
+Chemical specie 'H' is assigned to type 2
+Chemical specie 'I' is assigned to type 3
+Chemical specie 'N' is assigned to type 4
+Chemical specie 'Si' is assigned to type 5
+from sevenn version '0.9.1' single precision model trained at 2024-07-10 is loaded
+pair_coeff      * * d3 ${element_list}
+pair_coeff      * * d3 F H I N Si
+
+#########################################################
+#                   Slab settings                       #
+#########################################################
+
+variable    fix_h       equal   4.0
+
+region      rFixed      block   INF INF INF INF 0.0 ${fix_h}
+region      rFixed      block   INF INF INF INF 0.0 4
+group       gBottom     region  rFixed
+68 atoms in group gBottom
+velocity    gBottom     set     0.0 0.0 0.0
+fix         frz_bot     gBottom     setforce    0.0 0.0 0.0
+
+#########################################################
+#                 NVT MD variables                      #
+#########################################################
+
+variable        T_nvt           equal   150
+variable        time_nvt        equal   1
+
+variable        timestep_nvt    equal   0.001       # ps unit
+timestep        ${timestep_nvt}                     # ps unit
+timestep        0.001                     
+variable        step_nvt        equal   $(round(v_time_nvt/v_timestep_nvt))
+variable        step_nvt        equal   1000
+
+#########################################################
+#                 NVE + NVT MD                          #
+#########################################################
+region      rMove      block   EDGE EDGE   EDGE EDGE   ${fix_h} EDGE
+region      rMove      block   EDGE EDGE   EDGE EDGE   4 EDGE
+group       gMove      region  rMove
+110 atoms in group gMove
+velocity    gMove      create ${T_nvt} ${SEEDS} dist gaussian
+velocity    gMove      create 150 ${SEEDS} dist gaussian
+velocity    gMove      create 150 183171 dist gaussian
+
+
+variable    h_reflect   equal   32.118939999999995
+
+fix         top         all wall/reflect zhi ${h_reflect}
+fix         top         all wall/reflect zhi 32.11894
+fix         my_NVT      gMove    nvt     temp    ${T_nvt} ${T_nvt} 0.1
+fix         my_NVT      gMove    nvt     temp    150 ${T_nvt} 0.1
+fix         my_NVT      gMove    nvt     temp    150 150 0.1
+
+#########################################################
+#                       LOG                             #
+#########################################################
+variable        log_step        equal   100
+thermo_style    custom          step pe ke etotal fmax press cpu tpcpu spcpu
+thermo          ${log_step}
+thermo          100
+variable        path_dump      string  dump.lammps
+variable        path_output    string  FINAL.coo
+dump            my_dump     all custom ${log_step} ${path_dump}                             id type element xu yu zu fx fy fz
+dump            my_dump     all custom 100 ${path_dump}                             id type element xu yu zu fx fy fz
+dump            my_dump     all custom 100 dump.lammps                             id type element xu yu zu fx fy fz
+dump_modify     my_dump     sort id     element ${element_list}
+dump_modify     my_dump     sort id     element F H I N Si
+
+#########################################################
+#                      Run                              #
+#########################################################
+run ${step_nvt}
+run 1000
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 7
+  ghost atom cutoff = 7
+  binsize = 3.5, bins = 4 3 11
+  2 neighbor lists, perpetual/occasional/extra = 2 0 0
+  (1) pair e3gnn, perpetual
+      attributes: full, newton on
+      pair build: full/bin/atomonly
+      stencil: full/bin/3d
+      bin: standard
+  (2) pair d3, perpetual, copy from (1)
+      attributes: full, newton on
+      pair build: copy
+      stencil: none
+      bin: none
+Per MPI rank memory allocation (min/avg/max) = 3.463 | 3.463 | 3.463 Mbytes
+   Step         PotEng         KinEng         TotEng          Fmax          Press           CPU           T/CPU          S/CPU     
+         0  -850.45308      2.1134034     -848.33968      2.622421       1942.0909      0              0              0            
+       100  -850.77227      2.4402461     -848.33202      1.98705       -1648.508       9.2666851      0.010791345    10.791339    
+       200  -851.528        2.5313861     -848.99661      1.9595987     -1381.7013      18.507923      0.010821043    10.821047    
+       300  -852.11709      2.5237522     -849.59334      1.4599806     -560.7555       27.742666      0.010828688    10.828689    
+       400  -852.27826      2.1508252     -850.12743      1.6660016      36.883045      36.951955      0.010858601    10.858601    
+       500  -852.51606      2.1413128     -850.37475      1.4543837     -989.54714      46.180277      0.010836206    10.836206    
+       600  -852.49534      1.94146       -850.55388      2.2273612     -1725.2341      55.438603      0.010801089    10.801089    
+       700  -852.73699      2.129192      -850.6078       1.5938471     -3328.201       64.679868      0.010821029    10.82103     
+       800  -852.63839      2.0901683     -850.54822      1.622386      -913.31254      73.952083      0.010784909    10.784909    
+       900  -852.54982      2.2138736     -850.33595      1.9777848     -732.14163      83.22502       0.010784071    10.784071    
+      1000  -852.56696      2.4028412     -850.16412      1.6998115     -2893.1791      92.489279      0.010794172    10.794174    
+Loop time of 92.4896 on 1 procs for 1000 steps with 178 atoms
+
+Performance: 0.934 ns/day, 25.692 hours/ns, 10.812 timesteps/s, 1.925 katom-step/s
+98.1% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 92.445     | 92.445     | 92.445     |   0.0 | 99.95
+Neigh   | 0.0066386  | 0.0066386  | 0.0066386  |   0.0 |  0.01
+Comm    | 0.0075932  | 0.0075932  | 0.0075932  |   0.0 |  0.01
+Output  | 0.0037214  | 0.0037214  | 0.0037214  |   0.0 |  0.00
+Modify  | 0.019023   | 0.019023   | 0.019023   |   0.0 |  0.02
+Other   |            | 0.007848   |            |       |  0.01
+
+Nlocal:            178 ave         178 max         178 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:            754 ave         754 max         754 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:              0 ave           0 max           0 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+FullNghs:        20654 ave       20654 max       20654 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 20654
+Ave neighs/atom = 116.03371
+Neighbor list builds = 12
+Dangerous builds = 0
+
+write_data      ${path_output}
+write_data      FINAL.coo
+System init for write_data ...
+Total wall time: 0:01:33

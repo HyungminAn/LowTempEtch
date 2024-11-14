@@ -1,0 +1,77 @@
+
+#########################################################
+#                      Basic Input                      #
+#########################################################
+units           metal     # K, bar, ps, A
+box             tilt large
+boundary        p p f
+newton          on
+read_data       input.data
+mass        1   18.998403163
+mass        2   1.008
+mass        3   126.90447
+mass        4   14.007
+mass        5   28.085
+
+variable        element_list    string  "F H I N Si"
+
+#########################################################
+#                SEVENNET-0 + D3  hybrid                #
+#########################################################
+pair_style      hybrid/overlay      e3gnn    d3 9000 1600 damp_bj pbe
+pair_coeff      * * e3gnn ${path_potential}  ${element_list}
+pair_coeff      * * d3 ${element_list}
+
+#########################################################
+#                   Slab settings                       #
+#########################################################
+
+variable    fix_h       equal   4.0
+
+region      rFixed      block   INF INF INF INF 0.0 ${fix_h}
+group       gBottom     region  rFixed
+velocity    gBottom     set     0.0 0.0 0.0
+fix         frz_bot     gBottom     setforce    0.0 0.0 0.0
+
+#########################################################
+#                 NVT MD variables                      #
+#########################################################
+
+variable        T_nvt           equal   150
+variable        time_nvt        equal   1
+
+variable        timestep_nvt    equal   0.001       # ps unit
+timestep        ${timestep_nvt}                     # ps unit
+variable        step_nvt        equal   $(round(v_time_nvt/v_timestep_nvt))
+
+#########################################################
+#                 NVE + NVT MD                          #
+#########################################################
+region      rMove      block   EDGE EDGE   EDGE EDGE   ${fix_h} EDGE
+group       gMove      region  rMove
+velocity    gMove      create ${T_nvt} ${SEEDS} dist gaussian
+
+
+variable    h_reflect   equal   32.118939999999995
+
+fix         top         all wall/reflect zhi ${h_reflect}
+fix         my_NVT      gMove    nvt     temp    ${T_nvt} ${T_nvt} 0.1
+
+#########################################################
+#                       LOG                             #
+#########################################################
+variable        log_step        equal   100
+thermo_style    custom          step pe ke etotal fmax press cpu tpcpu spcpu
+thermo          ${log_step}
+variable        path_dump      string  dump.lammps
+variable        path_output    string  FINAL.coo
+dump            my_dump     all custom ${log_step} ${path_dump} &
+                            id type element xu yu zu fx fy fz
+dump_modify     my_dump     sort id     element ${element_list}
+
+#########################################################
+#                      Run                              #
+#########################################################
+run ${step_nvt}
+
+write_data      ${path_output}
