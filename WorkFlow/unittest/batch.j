@@ -10,5 +10,5 @@
 #SBATCH --mail-type=FAIL,TIME_LIMIT  # When mail is sent (BEGIN,END,FAIL,ALL,TIME_LIMIT,TIME_LIMIT_90,...)
 
 # rm -rf STD*
-path_py="/data2/andynn/LowTempEtch/00_codes/WorkFlow/main.py"
-python ${path_py} ../input.yaml
+path_py="/data2/andynn/LowTempEtch/00_codes/WorkFlow/CryoEtchSimulator/main.py"
+python ${path_py} ../CryoEtchSimulator/input.yaml

@@ -1,0 +1,8 @@
+README.md
+setup.py
+CryoEtchSimulator/__init__.py
+CryoEtchSimulator/main.py
+CryoEtchSimulator.egg-info/PKG-INFO
+CryoEtchSimulator.egg-info/SOURCES.txt
+CryoEtchSimulator.egg-info/dependency_links.txt
+CryoEtchSimulator.egg-info/top_level.txt

@@ -1,0 +1,244 @@
+GPU 1 assigned to the job
+Function main started at 2024-11-15 16:29:44
+delt * step:    10 msd_avg:    0.86842 msd_std:    2.51733 avg_SiF:    0.05403 msd_SiF:    0.09998 avg_HF:    3.36196 msd_HF:    5.82624 avg_other:    1.43463 msd_oth:    1.83314
+delt * step:    20 msd_avg:    1.58833 msd_std:    4.87448 avg_SiF:    0.05698 msd_SiF:    0.10100 avg_HF:    6.28842 msd_HF:   11.24574 avg_other:    2.64847 msd_oth:    3.71699
+delt * step:    30 msd_avg:    2.20645 msd_std:    6.40095 avg_SiF:    0.05725 msd_SiF:    0.10652 avg_HF:    8.68317 msd_HF:   14.48998 avg_other:    3.74224 msd_oth:    4.90057
+delt * step:    40 msd_avg:    2.91218 msd_std:    8.18298 avg_SiF:    0.06409 msd_SiF:    0.11531 avg_HF:   11.93539 msd_HF:   17.92521 avg_other:    4.77122 msd_oth:    6.49329
+delt * step:    50 msd_avg:    3.60832 msd_std:   10.25067 avg_SiF:    0.05876 msd_SiF:    0.11032 avg_HF:   15.27698 msd_HF:   22.39938 avg_other:    5.75601 msd_oth:    8.05422
+delt * step:    60 msd_avg:    4.26127 msd_std:   12.42440 avg_SiF:    0.05790 msd_SiF:    0.10513 avg_HF:   18.78637 msd_HF:   27.43696 avg_other:    6.52171 msd_oth:    9.37730
+delt * step:    70 msd_avg:    4.82499 msd_std:   14.60241 avg_SiF:    0.05870 msd_SiF:    0.10735 avg_HF:   21.45993 msd_HF:   32.66991 avg_other:    7.32230 msd_oth:   10.97409
+delt * step:    80 msd_avg:    5.31059 msd_std:   16.65482 avg_SiF:    0.05996 msd_SiF:    0.10270 avg_HF:   24.72096 msd_HF:   37.83252 avg_other:    7.62765 msd_oth:   11.80529
+delt * step:    90 msd_avg:    5.82761 msd_std:   18.14598 avg_SiF:    0.06001 msd_SiF:    0.10489 avg_HF:   28.15546 msd_HF:   40.90270 avg_other:    7.97025 msd_oth:   12.49368
+delt * step:   100 msd_avg:    6.54007 msd_std:   21.68946 avg_SiF:    0.04682 msd_SiF:    0.08403 avg_HF:   32.61098 msd_HF:   50.62681 avg_other:    8.57875 msd_oth:   13.40181
+Elapsed time: 1.23 sec
+delt * step:    10 msd_avg:    0.83010 msd_std:    3.00114 avg_SiF:    0.05556 msd_SiF:    0.10043 avg_HF:    3.05629 msd_HF:    7.58347 avg_other:    1.42672 msd_oth:    1.84107
+delt * step:    20 msd_avg:    1.63180 msd_std:    8.21109 avg_SiF:    0.05778 msd_SiF:    0.10276 avg_HF:    7.32887 msd_HF:   21.95943 avg_other:    2.37509 msd_oth:    3.55560
+delt * step:    30 msd_avg:    2.45991 msd_std:   15.10468 avg_SiF:    0.05696 msd_SiF:    0.10137 avg_HF:   12.15527 msd_HF:   41.21631 avg_other:    3.19543 msd_oth:    5.35740
+delt * step:    40 msd_avg:    3.33543 msd_std:   22.38238 avg_SiF:    0.05924 msd_SiF:    0.09585 avg_HF:   17.48423 msd_HF:   61.47473 avg_other:    3.96619 msd_oth:    7.10406
+delt * step:    50 msd_avg:    4.26834 msd_std:   29.75818 avg_SiF:    0.05398 msd_SiF:    0.09117 avg_HF:   23.38127 msd_HF:   81.97771 avg_other:    4.71473 msd_oth:    8.45265
+delt * step:    60 msd_avg:    5.25558 msd_std:   38.05467 avg_SiF:    0.05726 msd_SiF:    0.10069 avg_HF:   29.80841 msd_HF:  105.12881 avg_other:    5.41522 msd_oth:    9.69501
+delt * step:    70 msd_avg:    6.31053 msd_std:   48.30431 avg_SiF:    0.05896 msd_SiF:    0.10037 avg_HF:   37.41960 msd_HF:  133.85009 avg_other:    5.86992 msd_oth:   10.85708
+delt * step:    80 msd_avg:    7.37832 msd_std:   59.03359 avg_SiF:    0.05616 msd_SiF:    0.09261 avg_HF:   45.50895 msd_HF:  163.98816 avg_other:    6.18462 msd_oth:   11.28176
+delt * step:    90 msd_avg:    8.57510 msd_std:   71.57669 avg_SiF:    0.05720 msd_SiF:    0.09865 avg_HF:   55.50722 msd_HF:  199.25728 avg_other:    6.15662 msd_oth:   10.07443
+delt * step:   100 msd_avg:    9.72923 msd_std:   77.48519 avg_SiF:    0.06129 msd_SiF:    0.10033 avg_HF:   64.10119 msd_HF:  214.86681 avg_other:    6.54288 msd_oth:    9.68885
+Elapsed time: 1.22 sec
+delt * step:    10 msd_avg:    0.84454 msd_std:    3.11229 avg_SiF:    0.05193 msd_SiF:    0.09344 avg_HF:    4.00489 msd_HF:    7.90591 avg_other:    1.10221 msd_oth:    1.36851
+delt * step:    20 msd_avg:    1.68997 msd_std:    7.83020 avg_SiF:    0.05425 msd_SiF:    0.10420 avg_HF:    8.92886 msd_HF:   20.73279 avg_other:    1.93500 msd_oth:    2.33192
+delt * step:    30 msd_avg:    2.43856 msd_std:   13.34310 avg_SiF:    0.05853 msd_SiF:    0.10855 avg_HF:   13.65183 msd_HF:   36.08874 avg_other:    2.52291 msd_oth:    2.98793
+delt * step:    40 msd_avg:    3.15634 msd_std:   18.12931 avg_SiF:    0.05023 msd_SiF:    0.09537 avg_HF:   18.15417 msd_HF:   49.22783 avg_other:    3.12093 msd_oth:    3.64991
+delt * step:    50 msd_avg:    3.77617 msd_std:   21.36151 avg_SiF:    0.05397 msd_SiF:    0.10683 avg_HF:   22.09805 msd_HF:   57.79281 avg_other:    3.59405 msd_oth:    4.24568
+delt * step:    60 msd_avg:    4.50493 msd_std:   25.50134 avg_SiF:    0.05821 msd_SiF:    0.10413 avg_HF:   27.18315 msd_HF:   68.83190 avg_other:    3.97134 msd_oth:    4.46479
+delt * step:    70 msd_avg:    5.34187 msd_std:   30.84763 avg_SiF:    0.05894 msd_SiF:    0.10454 avg_HF:   33.69508 msd_HF:   83.13646 avg_other:    4.14380 msd_oth:    4.23800
+delt * step:    80 msd_avg:    6.79932 msd_std:   38.93306 avg_SiF:    0.05979 msd_SiF:    0.11011 avg_HF:   43.63085 msd_HF:  104.60914 avg_other:    5.00660 msd_oth:    4.70112
+delt * step:    90 msd_avg:    8.14987 msd_std:   44.38461 avg_SiF:    0.04770 msd_SiF:    0.09335 avg_HF:   51.94896 msd_HF:  118.44674 avg_other:    6.18641 msd_oth:    5.59225
+delt * step:   100 msd_avg:    8.61658 msd_std:   42.00384 avg_SiF:    0.05083 msd_SiF:    0.08060 avg_HF:   53.97884 msd_HF:  110.11329 avg_other:    6.91793 msd_oth:    6.38049
+Elapsed time: 1.20 sec
+delt * step:    10 msd_avg:    0.90315 msd_std:    3.15207 avg_SiF:    0.06013 msd_SiF:    0.10630 avg_HF:    3.66931 msd_HF:    7.80580 avg_other:    1.41528 msd_oth:    1.97600
+delt * step:    20 msd_avg:    1.78434 msd_std:    7.66785 avg_SiF:    0.05653 msd_SiF:    0.09922 avg_HF:    7.89574 msd_HF:   19.84943 avg_other:    2.65716 msd_oth:    4.01871
+delt * step:    30 msd_avg:    2.42257 msd_std:    9.31051 avg_SiF:    0.06442 msd_SiF:    0.11557 avg_HF:   10.74581 msd_HF:   23.62621 avg_other:    3.62093 msd_oth:    4.96666
+delt * step:    40 msd_avg:    3.00444 msd_std:   11.37634 avg_SiF:    0.05947 msd_SiF:    0.10657 avg_HF:   13.77134 msd_HF:   28.76703 avg_other:    4.35202 msd_oth:    5.81389
+delt * step:    50 msd_avg:    3.55659 msd_std:   14.89225 avg_SiF:    0.06462 msd_SiF:    0.11748 avg_HF:   17.35152 msd_HF:   38.39562 avg_other:    4.74319 msd_oth:    6.75652
+delt * step:    60 msd_avg:    4.22103 msd_std:   19.70127 avg_SiF:    0.06073 msd_SiF:    0.10797 avg_HF:   22.25468 msd_HF:   51.69701 avg_other:    4.99534 msd_oth:    7.46018
+delt * step:    70 msd_avg:    4.93805 msd_std:   23.33791 avg_SiF:    0.06111 msd_SiF:    0.11499 avg_HF:   26.90040 msd_HF:   61.17034 avg_other:    5.51684 msd_oth:    8.51911
+delt * step:    80 msd_avg:    5.94501 msd_std:   26.41369 avg_SiF:    0.06339 msd_SiF:    0.11570 avg_HF:   31.96435 msd_HF:   68.26820 avg_other:    6.82998 msd_oth:   10.67980
+delt * step:    90 msd_avg:    6.84657 msd_std:   30.39511 avg_SiF:    0.07166 msd_SiF:    0.12236 avg_HF:   34.93947 msd_HF:   79.00034 avg_other:    8.61725 msd_oth:   12.79951
+delt * step:   100 msd_avg:    7.81167 msd_std:   33.37871 avg_SiF:    0.05519 msd_SiF:    0.10365 avg_HF:   36.74092 msd_HF:   86.71396 avg_other:   11.13242 msd_oth:   15.16224
+Elapsed time: 1.20 sec
+delt * step:    10 msd_avg:    0.75933 msd_std:    2.55369 avg_SiF:    0.05287 msd_SiF:    0.09576 avg_HF:    3.23901 msd_HF:    6.28452 avg_other:    1.12385 msd_oth:    1.51146
+delt * step:    20 msd_avg:    1.37926 msd_std:    5.07626 avg_SiF:    0.05220 msd_SiF:    0.09493 avg_HF:    6.27241 msd_HF:   12.79537 avg_other:    1.96996 msd_oth:    2.59576
+delt * step:    30 msd_avg:    1.85185 msd_std:    7.24118 avg_SiF:    0.05316 msd_SiF:    0.09462 avg_HF:    8.69563 msd_HF:   18.55654 avg_other:    2.56781 msd_oth:    3.29678
+delt * step:    40 msd_avg:    2.32272 msd_std:    9.76957 avg_SiF:    0.04955 msd_SiF:    0.08796 avg_HF:   11.32339 msd_HF:   25.48279 avg_other:    3.08693 msd_oth:    3.76852
+delt * step:    50 msd_avg:    2.83156 msd_std:   12.40985 avg_SiF:    0.05459 msd_SiF:    0.10191 avg_HF:   14.25842 msd_HF:   32.62292 avg_other:    3.59259 msd_oth:    4.23769
+delt * step:    60 msd_avg:    3.28677 msd_std:   14.38938 avg_SiF:    0.05398 msd_SiF:    0.10205 avg_HF:   16.97339 msd_HF:   37.83898 avg_other:    4.01908 msd_oth:    4.37650
+delt * step:    70 msd_avg:    3.70706 msd_std:   16.22753 avg_SiF:    0.05586 msd_SiF:    0.11426 avg_HF:   19.19211 msd_HF:   42.69832 avg_other:    4.52335 msd_oth:    4.77536
+delt * step:    80 msd_avg:    3.80928 msd_std:   16.31732 avg_SiF:    0.05220 msd_SiF:    0.09765 avg_HF:   19.11564 msd_HF:   42.83905 avg_other:    4.90033 msd_oth:    5.27905
+delt * step:    90 msd_avg:    4.04049 msd_std:   16.04932 avg_SiF:    0.06546 msd_SiF:    0.12960 avg_HF:   19.33720 msd_HF:   41.73050 avg_other:    5.55387 msd_oth:    5.68668
+delt * step:   100 msd_avg:    4.61628 msd_std:   15.71027 avg_SiF:    0.06209 msd_SiF:    0.11398 avg_HF:   21.55131 msd_HF:   39.11193 avg_other:    6.58632 msd_oth:    7.00532
+Elapsed time: 1.22 sec
+delt * step:    10 msd_avg:    1.21955 msd_std:    4.24562 avg_SiF:    0.07109 msd_SiF:    0.13297 avg_HF:    5.20914 msd_HF:   10.64991 avg_other:    1.82876 msd_oth:    2.27407
+delt * step:    20 msd_avg:    2.56598 msd_std:   11.22402 avg_SiF:    0.06904 msd_SiF:    0.12783 avg_HF:   12.02868 msd_HF:   29.40966 avg_other:    3.57504 msd_oth:    4.84154
+delt * step:    30 msd_avg:    3.87702 msd_std:   18.29736 avg_SiF:    0.07638 msd_SiF:    0.14131 avg_HF:   19.10816 msd_HF:   48.30464 avg_other:    5.08180 msd_oth:    7.49400
+delt * step:    40 msd_avg:    5.48186 msd_std:   25.11753 avg_SiF:    0.07860 msd_SiF:    0.13588 avg_HF:   27.96813 msd_HF:   65.58650 avg_other:    6.86159 msd_oth:   10.66179
+delt * step:    50 msd_avg:    7.36100 msd_std:   34.04948 avg_SiF:    0.08235 msd_SiF:    0.15372 avg_HF:   38.60809 msd_HF:   88.67579 avg_other:    8.83717 msd_oth:   14.46527
+delt * step:    60 msd_avg:    9.24480 msd_std:   39.18832 avg_SiF:    0.07330 msd_SiF:    0.13604 avg_HF:   48.00864 msd_HF:   99.61108 avg_other:   11.34855 msd_oth:   19.04310
+delt * step:    70 msd_avg:   11.16296 msd_std:   44.79332 avg_SiF:    0.07119 msd_SiF:    0.12051 avg_HF:   57.27068 msd_HF:  111.61760 avg_other:   14.01609 msd_oth:   24.15036
+delt * step:    80 msd_avg:   12.68778 msd_std:   49.40125 avg_SiF:    0.07746 msd_SiF:    0.14141 avg_HF:   64.00519 msd_HF:  122.03659 avg_other:   16.37263 msd_oth:   27.80124
+delt * step:    90 msd_avg:   14.40273 msd_std:   55.18180 avg_SiF:    0.06811 msd_SiF:    0.12481 avg_HF:   73.00023 msd_HF:  135.70386 avg_other:   18.48620 msd_oth:   30.96117
+delt * step:   100 msd_avg:   15.64205 msd_std:   61.22202 avg_SiF:    0.09242 msd_SiF:    0.16020 avg_HF:   80.88496 msd_HF:  151.55665 avg_other:   19.40018 msd_oth:   32.78687
+Elapsed time: 1.22 sec
+delt * step:    10 msd_avg:    1.12377 msd_std:    3.75325 avg_SiF:    0.07580 msd_SiF:    0.14919 avg_HF:    4.68292 msd_HF:    9.33291 avg_other:    1.71220 msd_oth:    2.08870
+delt * step:    20 msd_avg:    2.29701 msd_std:    8.89840 avg_SiF:    0.08195 msd_SiF:    0.15452 avg_HF:   10.42422 msd_HF:   22.72587 avg_other:    3.29905 msd_oth:    4.40520
+delt * step:    30 msd_avg:    3.49656 msd_std:   14.69997 avg_SiF:    0.07814 msd_SiF:    0.14353 avg_HF:   16.52490 msd_HF:   38.16353 avg_other:    4.84858 msd_oth:    6.52954
+delt * step:    40 msd_avg:    4.78505 msd_std:   21.41059 avg_SiF:    0.07240 msd_SiF:    0.13860 avg_HF:   23.65309 msd_HF:   55.86977 avg_other:    6.28612 msd_oth:    9.27504
+delt * step:    50 msd_avg:    6.10153 msd_std:   29.28698 avg_SiF:    0.06981 msd_SiF:    0.13477 avg_HF:   31.32245 msd_HF:   76.93789 avg_other:    7.59408 msd_oth:   12.38248
+delt * step:    60 msd_avg:    7.31874 msd_std:   36.77615 avg_SiF:    0.08568 msd_SiF:    0.16543 avg_HF:   38.91047 msd_HF:   97.26232 avg_other:    8.56952 msd_oth:   14.31733
+delt * step:    70 msd_avg:    8.48302 msd_std:   40.78264 avg_SiF:    0.08454 msd_SiF:    0.15952 avg_HF:   46.86617 msd_HF:  107.24391 avg_other:    9.25482 msd_oth:   14.00086
+delt * step:    80 msd_avg:    9.66877 msd_std:   47.06787 avg_SiF:    0.07247 msd_SiF:    0.13548 avg_HF:   55.01818 msd_HF:  124.15878 avg_other:    9.95389 msd_oth:   13.76076
+delt * step:    90 msd_avg:   11.00400 msd_std:   52.32807 avg_SiF:    0.07201 msd_SiF:    0.13125 avg_HF:   63.68580 msd_HF:  137.37725 avg_other:   10.92071 msd_oth:   14.22203
+delt * step:   100 msd_avg:   12.56046 msd_std:   58.40281 avg_SiF:    0.06796 msd_SiF:    0.11605 avg_HF:   75.12721 msd_HF:  152.14460 avg_other:   11.51936 msd_oth:   14.08428
+Elapsed time: 1.20 sec
+delt * step:    10 msd_avg:    1.15427 msd_std:    4.01747 avg_SiF:    0.06984 msd_SiF:    0.12528 avg_HF:    4.83263 msd_HF:   10.01297 avg_other:    1.76502 msd_oth:    2.32551
+delt * step:    20 msd_avg:    2.22515 msd_std:    8.86058 avg_SiF:    0.06742 msd_SiF:    0.12799 avg_HF:   10.24879 msd_HF:   22.82744 avg_other:    3.15853 msd_oth:    4.07711
+delt * step:    30 msd_avg:    3.41139 msd_std:   14.45964 avg_SiF:    0.07299 msd_SiF:    0.13814 avg_HF:   16.63362 msd_HF:   37.67078 avg_other:    4.53221 msd_oth:    5.82175
+delt * step:    40 msd_avg:    4.58765 msd_std:   20.79149 avg_SiF:    0.07151 msd_SiF:    0.13529 avg_HF:   23.49554 msd_HF:   54.70905 avg_other:    5.69546 msd_oth:    7.38463
+delt * step:    50 msd_avg:    5.70288 msd_std:   27.46467 avg_SiF:    0.06783 msd_SiF:    0.12154 avg_HF:   30.50817 msd_HF:   72.80444 avg_other:    6.60007 msd_oth:    8.72852
+delt * step:    60 msd_avg:    7.01274 msd_std:   36.10165 avg_SiF:    0.07626 msd_SiF:    0.14718 avg_HF:   39.43653 msd_HF:   96.42020 avg_other:    7.36128 msd_oth:    9.75947
+delt * step:    70 msd_avg:    8.16339 msd_std:   43.42449 avg_SiF:    0.05980 msd_SiF:    0.10496 avg_HF:   47.96668 msd_HF:  116.01180 avg_other:    7.80097 msd_oth:   10.81789
+delt * step:    80 msd_avg:    9.57407 msd_std:   50.90324 avg_SiF:    0.06271 msd_SiF:    0.11755 avg_HF:   58.04028 msd_HF:  135.52268 avg_other:    8.44939 msd_oth:   11.89327
+delt * step:    90 msd_avg:   10.44180 msd_std:   54.01015 avg_SiF:    0.07114 msd_SiF:    0.11816 avg_HF:   64.56128 msd_HF:  142.71963 avg_other:    8.70567 msd_oth:   12.49389
+delt * step:   100 msd_avg:   12.42583 msd_std:   61.78233 avg_SiF:    0.05205 msd_SiF:    0.10094 avg_HF:   78.37842 msd_HF:  161.71501 avg_other:    9.80243 msd_oth:   13.08281
+Elapsed time: 1.20 sec
+delt * step:    10 msd_avg:    1.21675 msd_std:    3.49295 avg_SiF:    0.07175 msd_SiF:    0.14346 avg_HF:    4.86986 msd_HF:    8.13546 avg_other:    1.95390 msd_oth:    2.36514
+delt * step:    20 msd_avg:    2.36601 msd_std:    7.06885 avg_SiF:    0.07792 msd_SiF:    0.19958 avg_HF:    9.83478 msd_HF:   16.46065 avg_other:    3.77162 msd_oth:    4.80599
+delt * step:    30 msd_avg:    3.14840 msd_std:    9.27947 avg_SiF:    0.08164 msd_SiF:    0.20111 avg_HF:   12.89465 msd_HF:   21.19975 avg_other:    5.13808 msd_oth:    6.78373
+delt * step:    40 msd_avg:    3.73544 msd_std:   11.17812 avg_SiF:    0.08801 msd_SiF:    0.22471 avg_HF:   15.56455 msd_HF:   26.00201 avg_other:    6.00685 msd_oth:    7.59095
+delt * step:    50 msd_avg:    4.06277 msd_std:   12.32010 avg_SiF:    0.09391 msd_SiF:    0.24755 avg_HF:   17.27996 msd_HF:   28.78730 avg_other:    6.39612 msd_oth:    8.17064
+delt * step:    60 msd_avg:    4.44912 msd_std:   13.38187 avg_SiF:    0.09050 msd_SiF:    0.26827 avg_HF:   18.99701 msd_HF:   30.98828 avg_other:    6.99851 msd_oth:    9.09111
+delt * step:    70 msd_avg:    4.99146 msd_std:   13.96687 avg_SiF:    0.07852 msd_SiF:    0.25526 avg_HF:   22.02362 msd_HF:   30.64888 avg_other:    7.61145 msd_oth:   10.12579
+delt * step:    80 msd_avg:    6.09089 msd_std:   16.65174 avg_SiF:    0.08712 msd_SiF:    0.35296 avg_HF:   27.97694 msd_HF:   36.34302 avg_other:    8.86370 msd_oth:   11.11355
+delt * step:    90 msd_avg:    7.29179 msd_std:   21.33458 avg_SiF:    0.10397 msd_SiF:    0.39157 avg_HF:   35.69665 msd_HF:   48.76506 avg_other:    9.73047 msd_oth:   11.47868
+delt * step:   100 msd_avg:    7.90058 msd_std:   26.56620 avg_SiF:    0.10030 msd_SiF:    0.42868 avg_HF:   40.39229 msd_HF:   64.86920 avg_other:    9.88044 msd_oth:   10.79579
+Elapsed time: 1.21 sec
+delt * step:    10 msd_avg:    1.12106 msd_std:    3.25960 avg_SiF:    0.07250 msd_SiF:    0.13132 avg_HF:    4.22363 msd_HF:    7.59914 avg_other:    1.89327 msd_oth:    2.36334
+delt * step:    20 msd_avg:    2.28643 msd_std:    7.20684 avg_SiF:    0.07344 msd_SiF:    0.13335 avg_HF:    9.13797 msd_HF:   17.14980 avg_other:    3.79476 msd_oth:    4.92951
+delt * step:    30 msd_avg:    3.29234 msd_std:   12.22419 avg_SiF:    0.06496 msd_SiF:    0.11149 avg_HF:   14.34211 msd_HF:   30.82170 avg_other:    5.06901 msd_oth:    6.64091
+delt * step:    40 msd_avg:    4.20098 msd_std:   16.54738 avg_SiF:    0.08319 msd_SiF:    0.16505 avg_HF:   19.43516 msd_HF:   42.59565 avg_other:    6.01347 msd_oth:    7.38831
+delt * step:    50 msd_avg:    4.98585 msd_std:   20.97630 avg_SiF:    0.07804 msd_SiF:    0.14339 avg_HF:   24.43659 msd_HF:   54.75359 avg_other:    6.62855 msd_oth:    7.83060
+delt * step:    60 msd_avg:    5.83111 msd_std:   25.17157 avg_SiF:    0.06721 msd_SiF:    0.12409 avg_HF:   29.39601 msd_HF:   65.86382 avg_other:    7.47185 msd_oth:    8.92919
+delt * step:    70 msd_avg:    7.23186 msd_std:   32.41322 avg_SiF:    0.08077 msd_SiF:    0.13418 avg_HF:   36.75078 msd_HF:   85.28543 avg_other:    9.15440 msd_oth:   11.32007
+delt * step:    80 msd_avg:    9.45809 msd_std:   43.66820 avg_SiF:    0.06415 msd_SiF:    0.10868 avg_HF:   48.87842 msd_HF:  115.43121 avg_other:   11.72634 msd_oth:   14.31835
+delt * step:    90 msd_avg:   11.61481 msd_std:   56.18283 avg_SiF:    0.05723 msd_SiF:    0.09421 avg_HF:   62.44592 msd_HF:  148.98871 avg_other:   13.47293 msd_oth:   17.52429
+delt * step:   100 msd_avg:   14.01293 msd_std:   78.01419 avg_SiF:    0.04970 msd_SiF:    0.08153 avg_HF:   79.65387 msd_HF:  210.47927 avg_other:   14.56597 msd_oth:   19.68405
+Elapsed time: 1.41 sec
+delt * step:    10 msd_avg:    1.43352 msd_std:    5.40443 avg_SiF:    0.07952 msd_SiF:    0.14372 avg_HF:    6.58670 msd_HF:   13.76054 avg_other:    1.97192 msd_oth:    2.59952
+delt * step:    20 msd_avg:    2.86732 msd_std:   12.63836 avg_SiF:    0.08470 msd_SiF:    0.15633 avg_HF:   14.23837 msd_HF:   33.08785 avg_other:    3.66155 msd_oth:    5.01105
+delt * step:    30 msd_avg:    4.43894 msd_std:   20.80696 avg_SiF:    0.08534 msd_SiF:    0.16712 avg_HF:   22.99431 msd_HF:   54.84057 avg_other:    5.37571 msd_oth:    7.69986
+delt * step:    40 msd_avg:    6.00212 msd_std:   27.53695 avg_SiF:    0.09024 msd_SiF:    0.17697 avg_HF:   31.20822 msd_HF:   72.15063 avg_other:    7.27050 msd_oth:   10.59733
+delt * step:    50 msd_avg:    7.38254 msd_std:   33.15714 avg_SiF:    0.08379 msd_SiF:    0.16429 avg_HF:   37.61818 msd_HF:   86.55738 avg_other:    9.30191 msd_oth:   13.46950
+delt * step:    60 msd_avg:    8.45411 msd_std:   38.45891 avg_SiF:    0.08592 msd_SiF:    0.15519 avg_HF:   43.10897 msd_HF:  101.01062 avg_other:   10.65909 msd_oth:   14.47655
+delt * step:    70 msd_avg:    9.23036 msd_std:   40.75796 avg_SiF:    0.08453 msd_SiF:    0.16739 avg_HF:   47.04324 msd_HF:  106.77718 avg_other:   11.66520 msd_oth:   14.70255
+delt * step:    80 msd_avg:   10.28585 msd_std:   42.42964 avg_SiF:    0.08105 msd_SiF:    0.16694 avg_HF:   51.56319 msd_HF:  109.96445 avg_other:   13.36811 msd_oth:   15.78012
+delt * step:    90 msd_avg:   11.69469 msd_std:   46.62953 avg_SiF:    0.07824 msd_SiF:    0.18536 avg_HF:   58.91835 msd_HF:  119.86318 avg_other:   15.10881 msd_oth:   17.57858
+delt * step:   100 msd_avg:   14.09565 msd_std:   57.59796 avg_SiF:    0.05533 msd_SiF:    0.09481 avg_HF:   73.12788 msd_HF:  148.39764 avg_other:   17.44018 msd_oth:   20.53835
+Elapsed time: 1.20 sec
+delt * step:    10 msd_avg:    1.45765 msd_std:    4.71167 avg_SiF:    0.08907 msd_SiF:    0.19281 avg_HF:    6.18446 msd_HF:   11.57692 avg_other:    2.19462 msd_oth:    2.63546
+delt * step:    20 msd_avg:    3.11455 msd_std:   11.03023 avg_SiF:    0.09509 msd_SiF:    0.25212 avg_HF:   13.91381 msd_HF:   27.36657 avg_other:    4.59222 msd_oth:    6.15623
+delt * step:    30 msd_avg:    4.66904 msd_std:   17.37813 avg_SiF:    0.10927 msd_SiF:    0.37657 avg_HF:   20.96427 msd_HF:   43.51865 avg_other:    6.90569 msd_oth:    9.67887
+delt * step:    40 msd_avg:    5.95040 msd_std:   20.43653 avg_SiF:    0.13913 msd_SiF:    0.48751 avg_HF:   25.68355 msd_HF:   49.40630 avg_other:    9.21476 msd_oth:   13.36035
+delt * step:    50 msd_avg:    7.39834 msd_std:   25.37683 avg_SiF:    0.14648 msd_SiF:    0.58847 avg_HF:   31.73891 msd_HF:   61.01443 avg_other:   11.58567 msd_oth:   17.11040
+delt * step:    60 msd_avg:    8.94365 msd_std:   30.70876 avg_SiF:    0.16178 msd_SiF:    0.65091 avg_HF:   38.19953 msd_HF:   73.77936 avg_other:   14.10250 msd_oth:   20.87181
+delt * step:    70 msd_avg:   10.71319 msd_std:   37.83188 avg_SiF:    0.16587 msd_SiF:    0.68151 avg_HF:   47.43186 msd_HF:   92.12932 avg_other:   16.27656 msd_oth:   23.91423
+delt * step:    80 msd_avg:   12.57571 msd_std:   45.41129 avg_SiF:    0.16002 msd_SiF:    0.69970 avg_HF:   60.08908 msd_HF:  111.79549 avg_other:   17.40850 msd_oth:   24.97785
+delt * step:    90 msd_avg:   14.49528 msd_std:   52.47027 avg_SiF:    0.15647 msd_SiF:    0.69441 avg_HF:   75.57838 msd_HF:  129.24714 avg_other:   17.59255 msd_oth:   23.67965
+delt * step:   100 msd_avg:   16.12564 msd_std:   57.51463 avg_SiF:    0.14167 msd_SiF:    0.63083 avg_HF:   87.54941 msd_HF:  140.69324 avg_other:   18.24537 msd_oth:   22.98190
+Elapsed time: 1.21 sec
+delt * step:    10 msd_avg:    1.66675 msd_std:    7.16492 avg_SiF:    0.07549 msd_SiF:    0.14076 avg_HF:    8.49411 msd_HF:   18.70883 avg_other:    1.99104 msd_oth:    2.60339
+delt * step:    20 msd_avg:    3.86089 msd_std:   18.59589 avg_SiF:    0.08008 msd_SiF:    0.16861 avg_HF:   22.29390 msd_HF:   48.88010 avg_other:    3.74685 msd_oth:    5.38052
+delt * step:    30 msd_avg:    6.11094 msd_std:   30.31791 avg_SiF:    0.07877 msd_SiF:    0.14977 avg_HF:   36.69631 msd_HF:   79.43798 avg_other:    5.45855 msd_oth:    9.10977
+delt * step:    40 msd_avg:    8.34558 msd_std:   41.97472 avg_SiF:    0.08152 msd_SiF:    0.16544 avg_HF:   50.67530 msd_HF:  109.79155 avg_other:    7.28067 msd_oth:   13.36881
+delt * step:    50 msd_avg:   10.29879 msd_std:   51.37107 avg_SiF:    0.07176 msd_SiF:    0.12855 avg_HF:   62.20548 msd_HF:  133.92426 avg_other:    9.17202 msd_oth:   17.53033
+delt * step:    60 msd_avg:   11.55414 msd_std:   53.22486 avg_SiF:    0.07012 msd_SiF:    0.12814 avg_HF:   68.29456 msd_HF:  136.04552 avg_other:   10.90730 msd_oth:   21.45626
+delt * step:    70 msd_avg:   13.18224 msd_std:   57.08555 avg_SiF:    0.08680 msd_SiF:    0.16550 avg_HF:   77.76416 msd_HF:  143.94557 avg_other:   12.49269 msd_oth:   23.08319
+delt * step:    80 msd_avg:   15.32920 msd_std:   63.42616 avg_SiF:    0.06891 msd_SiF:    0.12789 avg_HF:   90.82457 msd_HF:  158.46083 avg_other:   14.43080 msd_oth:   24.17102
+delt * step:    90 msd_avg:   17.28458 msd_std:   69.02680 avg_SiF:    0.07479 msd_SiF:    0.13781 avg_HF:  102.64068 msd_HF:  171.35120 avg_other:   16.18493 msd_oth:   24.29277
+delt * step:   100 msd_avg:   19.89963 msd_std:   77.78822 avg_SiF:    0.05774 msd_SiF:    0.11317 avg_HF:  120.06106 msd_HF:  191.30322 avg_other:   17.93149 msd_oth:   26.03546
+Elapsed time: 1.20 sec
+delt * step:    10 msd_avg:    1.67068 msd_std:    6.35146 avg_SiF:    0.07709 msd_SiF:    0.13924 avg_HF:    8.19253 msd_HF:   16.11469 avg_other:    2.12164 msd_oth:    2.81577
+delt * step:    20 msd_avg:    3.45185 msd_std:   17.09902 avg_SiF:    0.06856 msd_SiF:    0.13039 avg_HF:   19.31140 msd_HF:   45.32107 avg_other:    3.60396 msd_oth:    5.14267
+delt * step:    30 msd_avg:    4.97047 msd_std:   27.71690 avg_SiF:    0.07664 msd_SiF:    0.14070 avg_HF:   29.47999 msd_HF:   74.53896 avg_other:    4.56282 msd_oth:    6.45102
+delt * step:    40 msd_avg:    6.42426 msd_std:   36.30740 avg_SiF:    0.07158 msd_SiF:    0.12394 avg_HF:   39.26151 msd_HF:   97.60793 avg_other:    5.48649 msd_oth:    7.47554
+delt * step:    50 msd_avg:    7.75806 msd_std:   45.49418 avg_SiF:    0.07577 msd_SiF:    0.14435 avg_HF:   47.67348 msd_HF:  122.81717 avg_other:    6.54188 msd_oth:    9.25855
+delt * step:    60 msd_avg:    8.92744 msd_std:   49.90601 avg_SiF:    0.07587 msd_SiF:    0.14480 avg_HF:   54.39358 msd_HF:  133.77279 avg_other:    7.73600 msd_oth:   11.48912
+delt * step:    70 msd_avg:    9.71936 msd_std:   49.20793 avg_SiF:    0.07479 msd_SiF:    0.14649 avg_HF:   59.63510 msd_HF:  129.48397 avg_other:    8.27064 msd_oth:   12.46235
+delt * step:    80 msd_avg:   10.66105 msd_std:   54.15300 avg_SiF:    0.07721 msd_SiF:    0.13553 avg_HF:   65.77095 msd_HF:  142.47137 avg_other:    8.93804 msd_oth:   13.56102
+delt * step:    90 msd_avg:   12.66318 msd_std:   56.52785 avg_SiF:    0.06182 msd_SiF:    0.10606 avg_HF:   78.30078 msd_HF:  144.73732 avg_other:   10.60275 msd_oth:   14.02473
+delt * step:   100 msd_avg:   15.09241 msd_std:   68.22025 avg_SiF:    0.06502 msd_SiF:    0.10987 avg_HF:   96.91150 msd_HF:  174.02678 avg_other:   11.21738 msd_oth:   14.51881
+Elapsed time: 1.52 sec
+delt * step:    10 msd_avg:    1.24573 msd_std:    4.39068 avg_SiF:    0.06803 msd_SiF:    0.13404 avg_HF:    5.08244 msd_HF:   11.04099 avg_other:    1.97224 msd_oth:    2.47557
+delt * step:    20 msd_avg:    2.64056 msd_std:   11.94619 avg_SiF:    0.07789 msd_SiF:    0.15685 avg_HF:   12.65978 msd_HF:   31.53971 avg_other:    3.55321 msd_oth:    4.71775
+delt * step:    30 msd_avg:    3.89609 msd_std:   20.91334 avg_SiF:    0.07460 msd_SiF:    0.14304 avg_HF:   20.17646 msd_HF:   56.56930 avg_other:    4.72121 msd_oth:    6.10311
+delt * step:    40 msd_avg:    4.88206 msd_std:   29.65131 avg_SiF:    0.07311 msd_SiF:    0.13001 avg_HF:   26.38487 msd_HF:   81.22758 avg_other:    5.51413 msd_oth:    7.07065
+delt * step:    50 msd_avg:    5.90620 msd_std:   39.12224 avg_SiF:    0.07456 msd_SiF:    0.14367 avg_HF:   31.73290 msd_HF:  108.15882 avg_other:    6.77228 msd_oth:    8.31863
+delt * step:    60 msd_avg:    6.99706 msd_std:   48.80345 avg_SiF:    0.08111 msd_SiF:    0.15852 avg_HF:   37.67536 msd_HF:  135.50707 avg_other:    8.00435 msd_oth:    9.65773
+delt * step:    70 msd_avg:    8.02342 msd_std:   59.14828 avg_SiF:    0.08830 msd_SiF:    0.17616 avg_HF:   44.87291 msd_HF:  164.65666 avg_other:    8.51904 msd_oth:   10.29567
+delt * step:    80 msd_avg:    9.13519 msd_std:   64.10198 avg_SiF:    0.07536 msd_SiF:    0.13679 avg_HF:   53.19458 msd_HF:  177.30870 avg_other:    8.90630 msd_oth:   11.51387
+delt * step:    90 msd_avg:   10.72412 msd_std:   71.72435 avg_SiF:    0.05385 msd_SiF:    0.09256 avg_HF:   66.06930 msd_HF:  196.67472 avg_other:    9.07298 msd_oth:   12.66457
+delt * step:   100 msd_avg:   13.17961 msd_std:   85.62095 avg_SiF:    0.05275 msd_SiF:    0.10484 avg_HF:   85.15587 msd_HF:  233.27819 avg_other:    9.59269 msd_oth:   12.46172
+Elapsed time: 1.21 sec
+delt * step:    10 msd_avg:    1.57171 msd_std:    4.46038 avg_SiF:    0.08312 msd_SiF:    0.15515 avg_HF:    6.41231 msd_HF:   10.21600 avg_other:    2.49356 msd_oth:    3.12756
+delt * step:    20 msd_avg:    3.40142 msd_std:   11.75488 avg_SiF:    0.09193 msd_SiF:    0.17278 avg_HF:   15.09013 msd_HF:   28.96432 avg_other:    5.08015 msd_oth:    6.67987
+delt * step:    30 msd_avg:    5.50172 msd_std:   20.73428 avg_SiF:    0.08634 msd_SiF:    0.16876 avg_HF:   25.23832 msd_HF:   52.10419 avg_other:    8.00463 msd_oth:   11.08716
+delt * step:    40 msd_avg:    7.74135 msd_std:   29.34914 avg_SiF:    0.08700 msd_SiF:    0.16065 avg_HF:   35.86815 msd_HF:   73.72402 avg_other:   11.18698 msd_oth:   15.64618
+delt * step:    50 msd_avg:   10.08422 msd_std:   37.33540 avg_SiF:    0.09025 msd_SiF:    0.15519 avg_HF:   46.62321 msd_HF:   92.84215 avg_other:   14.65705 msd_oth:   20.81407
+delt * step:    60 msd_avg:   12.28316 msd_std:   45.71245 avg_SiF:    0.08611 msd_SiF:    0.15817 avg_HF:   56.68079 msd_HF:  112.99337 avg_other:   17.94243 msd_oth:   26.91461
+delt * step:    70 msd_avg:   14.70751 msd_std:   56.24812 avg_SiF:    0.07919 msd_SiF:    0.14249 avg_HF:   69.10635 msd_HF:  140.69169 avg_other:   21.03433 msd_oth:   30.84975
+delt * step:    80 msd_avg:   17.55930 msd_std:   70.01742 avg_SiF:    0.08827 msd_SiF:    0.16981 avg_HF:   84.28278 msd_HF:  178.15339 avg_other:   24.41428 msd_oth:   34.15747
+delt * step:    90 msd_avg:   20.72466 msd_std:   85.22350 avg_SiF:    0.07366 msd_SiF:    0.12639 avg_HF:  100.13614 msd_HF:  218.79810 avg_other:   28.60997 msd_oth:   39.50662
+delt * step:   100 msd_avg:   22.26702 msd_std:   96.11810 avg_SiF:    0.06991 msd_SiF:    0.13832 avg_HF:  111.49747 msd_HF:  249.16954 avg_other:   29.19330 msd_oth:   40.73597
+Elapsed time: 1.20 sec
+delt * step:    10 msd_avg:    1.89213 msd_std:    6.84721 avg_SiF:    0.09559 msd_SiF:    0.18354 avg_HF:    8.78438 msd_HF:   17.29971 avg_other:    2.58459 msd_oth:    3.19401
+delt * step:    20 msd_avg:    4.05455 msd_std:   17.79315 avg_SiF:    0.09742 msd_SiF:    0.19646 avg_HF:   21.44668 msd_HF:   46.53734 avg_other:    4.69539 msd_oth:    5.76759
+delt * step:    30 msd_avg:    6.23934 msd_std:   29.09120 avg_SiF:    0.10463 msd_SiF:    0.20780 avg_HF:   35.79267 msd_HF:   76.06120 avg_other:    6.19665 msd_oth:    8.59553
+delt * step:    40 msd_avg:    8.15527 msd_std:   40.10208 avg_SiF:    0.09262 msd_SiF:    0.17027 avg_HF:   49.39996 msd_HF:  105.30178 avg_other:    7.13767 msd_oth:    9.86951
+delt * step:    50 msd_avg:    9.66195 msd_std:   49.28660 avg_SiF:    0.09193 msd_SiF:    0.16633 avg_HF:   59.05714 msd_HF:  130.29476 avg_other:    8.27832 msd_oth:   10.97199
+delt * step:    60 msd_avg:   10.04217 msd_std:   50.33005 avg_SiF:    0.08696 msd_SiF:    0.16338 avg_HF:   59.69315 msd_HF:  133.12277 avg_other:    9.29579 msd_oth:   12.01201
+delt * step:    70 msd_avg:   11.11080 msd_std:   53.37918 avg_SiF:    0.08828 msd_SiF:    0.16527 avg_HF:   64.78286 msd_HF:  140.43057 avg_other:   10.80523 msd_oth:   13.63111
+delt * step:    80 msd_avg:   12.78933 msd_std:   59.38556 avg_SiF:    0.07485 msd_SiF:    0.14181 avg_HF:   75.06397 msd_HF:  155.15926 avg_other:   12.29128 msd_oth:   14.72342
+delt * step:    90 msd_avg:   15.07130 msd_std:   65.44512 avg_SiF:    0.07580 msd_SiF:    0.14166 avg_HF:   89.82964 msd_HF:  167.99122 avg_other:   13.95932 msd_oth:   16.21141
+delt * step:   100 msd_avg:   18.57731 msd_std:   77.15351 avg_SiF:    0.06494 msd_SiF:    0.11818 avg_HF:  113.45075 msd_HF:  194.98607 avg_other:   16.17168 msd_oth:   17.05328
+Elapsed time: 1.21 sec
+delt * step:    10 msd_avg:    2.26466 msd_std:    7.23597 avg_SiF:    0.10510 msd_SiF:    0.25770 avg_HF:   10.10660 msd_HF:   17.75815 avg_other:    3.27422 msd_oth:    3.60449
+delt * step:    20 msd_avg:    5.10480 msd_std:   19.60345 avg_SiF:    0.11259 msd_SiF:    0.31300 avg_HF:   25.38597 msd_HF:   50.06812 avg_other:    6.57738 msd_oth:    7.64175
+delt * step:    30 msd_avg:    8.04997 msd_std:   33.88876 avg_SiF:    0.11377 msd_SiF:    0.41697 avg_HF:   42.50176 msd_HF:   87.97417 avg_other:    9.50674 msd_oth:   10.90463
+delt * step:    40 msd_avg:   11.00750 msd_std:   50.34374 avg_SiF:    0.13360 msd_SiF:    0.52232 avg_HF:   61.12062 msd_HF:  132.38506 avg_other:   11.84014 msd_oth:   13.09280
+delt * step:    50 msd_avg:   14.13971 msd_std:   65.36914 avg_SiF:    0.15375 msd_SiF:    0.55985 avg_HF:   81.30339 msd_HF:  171.44247 avg_other:   14.12729 msd_oth:   15.78653
+delt * step:    60 msd_avg:   17.10022 msd_std:   77.53187 avg_SiF:    0.15153 msd_SiF:    0.61662 avg_HF:  101.18339 msd_HF:  201.44501 avg_other:   16.00844 msd_oth:   18.53824
+delt * step:    70 msd_avg:   20.16394 msd_std:   89.03048 avg_SiF:    0.17441 msd_SiF:    0.68600 avg_HF:  120.89702 msd_HF:  229.34237 avg_other:   18.25062 msd_oth:   21.11746
+delt * step:    80 msd_avg:   23.27897 msd_std:   99.52162 avg_SiF:    0.17908 msd_SiF:    0.71064 avg_HF:  138.77229 msd_HF:  254.65188 avg_other:   21.43344 msd_oth:   24.07699
+delt * step:    90 msd_avg:   27.08530 msd_std:  112.01127 avg_SiF:    0.15616 msd_SiF:    0.70620 avg_HF:  157.73554 msd_HF:  285.61132 avg_other:   26.52915 msd_oth:   28.34651
+delt * step:   100 msd_avg:   27.83127 msd_std:  111.80123 avg_SiF:    0.13252 msd_SiF:    0.61875 avg_HF:  157.78909 msd_HF:  284.63557 avg_other:   29.02975 msd_oth:   29.33558
+Elapsed time: 1.21 sec
+delt * step:    10 msd_avg:    1.77483 msd_std:    5.73618 avg_SiF:    0.09669 msd_SiF:    0.18449 avg_HF:    7.87457 msd_HF:   14.05630 avg_other:    2.55696 msd_oth:    3.04003
+delt * step:    20 msd_avg:    4.07817 msd_std:   15.47605 avg_SiF:    0.10159 msd_SiF:    0.26464 avg_HF:   20.24932 msd_HF:   39.39003 avg_other:    5.24472 msd_oth:    6.17074
+delt * step:    30 msd_avg:    6.70728 msd_std:   27.78663 avg_SiF:    0.11512 msd_SiF:    0.36418 avg_HF:   35.73207 msd_HF:   71.59860 avg_other:    7.75430 msd_oth:    9.54224
+delt * step:    40 msd_avg:    9.49962 msd_std:   41.81110 avg_SiF:    0.13024 msd_SiF:    0.43975 avg_HF:   52.41426 msd_HF:  108.74720 avg_other:   10.32297 msd_oth:   12.93343
+delt * step:    50 msd_avg:   12.37965 msd_std:   57.32808 avg_SiF:    0.14525 msd_SiF:    0.51743 avg_HF:   70.13458 msd_HF:  149.97189 avg_other:   12.76774 msd_oth:   17.09615
+delt * step:    60 msd_avg:   15.38543 msd_std:   75.64903 avg_SiF:    0.15897 msd_SiF:    0.56618 avg_HF:   89.84575 msd_HF:  199.63446 avg_other:   14.83611 msd_oth:   19.85586
+delt * step:    70 msd_avg:   18.56200 msd_std:   97.57773 avg_SiF:    0.18337 msd_SiF:    0.64015 avg_HF:  111.57623 msd_HF:  260.02448 avg_other:   16.64328 msd_oth:   21.26841
+delt * step:    80 msd_avg:   21.02200 msd_std:  112.43791 avg_SiF:    0.18191 msd_SiF:    0.63792 avg_HF:  128.49063 msd_HF:  300.22765 avg_other:   18.04752 msd_oth:   21.31705
+delt * step:    90 msd_avg:   23.04821 msd_std:  124.15747 avg_SiF:    0.16419 msd_SiF:    0.59620 avg_HF:  142.21285 msd_HF:  331.81921 avg_other:   19.31967 msd_oth:   20.88846
+delt * step:   100 msd_avg:   24.82344 msd_std:  130.56452 avg_SiF:    0.15242 msd_SiF:    0.59004 avg_HF:  150.86267 msd_HF:  348.46169 avg_other:   21.77610 msd_oth:   22.20800
+Elapsed time: 1.23 sec
+delt * step:    10 msd_avg:    1.82940 msd_std:    6.50393 avg_SiF:    0.09763 msd_SiF:    0.17349 avg_HF:    7.78967 msd_HF:   16.59525 avg_other:    2.77028 msd_oth:    3.06064
+delt * step:    20 msd_avg:    4.20974 msd_std:   19.75112 avg_SiF:    0.09921 msd_SiF:    0.17329 avg_HF:   20.09639 msd_HF:   52.86250 avg_other:    5.74730 msd_oth:    6.44664
+delt * step:    30 msd_avg:    6.58914 msd_std:   33.28147 avg_SiF:    0.10232 msd_SiF:    0.18894 avg_HF:   32.43075 msd_HF:   89.77553 avg_other:    8.70718 msd_oth:   10.05481
+delt * step:    40 msd_avg:    8.76739 msd_std:   41.69231 avg_SiF:    0.09614 msd_SiF:    0.17987 avg_HF:   42.81216 msd_HF:  111.43543 avg_other:   11.79829 msd_oth:   13.66061
+delt * step:    50 msd_avg:   10.80786 msd_std:   49.38094 avg_SiF:    0.09205 msd_SiF:    0.16689 avg_HF:   52.76925 msd_HF:  131.06797 avg_other:   14.59764 msd_oth:   16.88283
+delt * step:    60 msd_avg:   12.78380 msd_std:   57.59186 avg_SiF:    0.09766 msd_SiF:    0.17543 avg_HF:   63.79464 msd_HF:  152.01788 avg_other:   16.73686 msd_oth:   20.06352
+delt * step:    70 msd_avg:   14.77705 msd_std:   67.90719 avg_SiF:    0.09706 msd_SiF:    0.18755 avg_HF:   76.60466 msd_HF:  179.26499 avg_other:   18.23159 msd_oth:   22.37411
+delt * step:    80 msd_avg:   16.85662 msd_std:   78.33379 avg_SiF:    0.09312 msd_SiF:    0.16465 avg_HF:   88.92149 msd_HF:  206.54497 avg_other:   20.21658 msd_oth:   26.06859
+delt * step:    90 msd_avg:   19.46080 msd_std:   91.52596 avg_SiF:    0.08948 msd_SiF:    0.15192 avg_HF:  102.28947 msd_HF:  241.84551 avg_other:   23.52227 msd_oth:   30.57273
+delt * step:   100 msd_avg:   22.31841 msd_std:  101.81924 avg_SiF:    0.05359 msd_SiF:    0.09813 avg_HF:  114.73802 msd_HF:  267.53528 avg_other:   28.09903 msd_oth:   37.24435
+Elapsed time: 1.21 sec
+***** 250 -9.4560e+00
+***** 250 -8.8082e+00
+***** 250 -9.0258e+00
+***** 250 -9.2607e+00
+***** 250 -9.6262e+00
+***** 300 -8.3726e+00
+***** 300 -8.6028e+00
+***** 300 -8.5760e+00
+***** 300 -9.7579e+00
+***** 300 -8.9143e+00
+***** 350 -8.7105e+00
+***** 350 -8.7343e+00
+***** 350 -8.2022e+00
+***** 350 -8.5003e+00
+***** 350 -8.7633e+00
+***** 400 -8.2246e+00
+***** 400 -8.4548e+00
+***** 400 -7.6391e+00
+***** 400 -7.6957e+00
+***** 400 -8.1946e+00
+Function main ended at 2024-11-15 16:30:13
+    Elapsed time: 28.338 s
