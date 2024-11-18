@@ -68,8 +68,9 @@ class CellGenerator():
             self._write_packmol_input()
             result = _run_packmol(self.path_packmol, self.path_input, self.path_log)
         with open("result.yaml", "w") as f:
-            self.dst = str(self.dst)
-            yaml.dump(self.__dict__, f)
+            write_dict = self.__dict__.copy()
+            write_dict['dst'] = str(write_dict['dst'])
+            yaml.dump(write_dict, f)
         self._write()
 
     def _write_packmol_input(self):

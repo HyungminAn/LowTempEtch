@@ -91,7 +91,7 @@ class AdsorptionSimulator():
         }
 
     def _generate_and_process_cell(self, dst, input_dict_cellgen, is_additive):
-        if not os.path.exists(dst):
+        if not os.path.exists(dst/'POSCAR'):
             self.cellgen = CellGenerator(input_dict_cellgen)
             self.cellgen.generate()
 

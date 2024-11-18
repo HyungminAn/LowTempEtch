@@ -19,8 +19,8 @@ def main():
     adsRunner = AdsorptionSimulator(inputs)
     adsRunner.run()
 
-    diffRunner = DiffusionSimulator(inputs, adsRunner.slab)
-    diffRunner.run()
+    # diffRunner = DiffusionSimulator(inputs, adsRunner.slab)
+    # diffRunner.run()
 
 
 if __name__ == "__main__":

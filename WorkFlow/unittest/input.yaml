@@ -1,0 +1,78 @@
+dst: "./run"
+
+cell_generation:
+  tolerance: 2.38
+  path:
+    packmol: /home/andynn/packmol-20.14.4-docs1/packmol
+    input: ./my_input.inp
+    output: ./my_output.xyz
+    log: ./LOG
+
+adsorption:
+  paths:
+    slab: "/data2/andynn/LowTempEtch/02_slab/AFS/chgTot/relax/POSCAR_relaxed"
+    additive: "/data2/andynn/LowTempEtch/03_gases/benchmark/chgTot/IF5/POSCAR_relaxed"
+    etchant: "/data2/andynn/LowTempEtch/03_gases/benchmark/chgTot/HF/POSCAR_relaxed"
+
+  mol_info:
+    additive:
+      name: "IF5"
+      n_layer: 1
+      n_repeat: 2
+    etchant:
+      name: "HF"
+      n_layer: 1
+      n_repeat: 2
+
+  md:
+    flag: True
+    time: 1  # ps
+    temp: 150  # K
+
+diffusion:
+  n_repeat: 5
+  md_temp: [250, 300, 350, 400]
+  md_time: 10  # ps
+
+constraint:
+  fix_bottom_height: 4.0
+
+relax:
+  path:
+    pot:
+      7net:
+        m3g: /data2/shared_data/pretrained/7net_m3g/checkpoint_best.pth
+        m3g_c55: /data2/shared_data/pretrained/7net_m3g_c55/checkpoint_best.pth
+        chg: /data2/shared_data/pretrained/7net_chg/checkpoint_best.pth
+        chgTot: /data2/shared_data/pretrained/7net_chgTot/checkpoint_best.pth
+        chgTot_l3i3: /data2/shared_data/pretrained_experimental/7net_chgTot_l3i3/checkpoint_best.pth
+
+      7net_pt:
+        m3g: /data2/shared_data/pretrained/7net_m3g/deployed_serial.pt
+        m3g_c55: /data2/shared_data/pretrained/7net_m3g_c55/deployed_serial.pt
+        chg: /data2/shared_data/pretrained/7net_chg/deployed_serial.pt
+        chgTot: /data2/shared_data/pretrained/7net_chgTot/deployed_serial.pt
+        chgTot_l3i3: /data2/shared_data/pretrained_experimental/7net_chgTot_l3i3/deployed_serial.pt
+
+    traj: "opt.extxyz"
+    output: "POSCAR_relaxed"
+    lmp_bin: /home/andynn/lammps_sevenn/build/lmp
+    log: 'log'
+
+  model: 'chgTot'
+
+  include_d3: False
+
+  options:
+    opt_type: FIRE
+    filter_type: FrechetCellFilter
+    filter_options:
+      hydrostatic_strain: False
+      constant_volume: False
+      scalar_pressure: 0.0
+    cell_relax: False
+    fix_symmetry: False
+    max_steps: 1000
+    fmax: 0.02
+    lmp_input:
+      boundary: 'p p p'
