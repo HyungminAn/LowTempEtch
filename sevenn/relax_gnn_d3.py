@@ -16,7 +16,10 @@ from ase.optimize import MDMin
 from ase.optimize import FIRE
 from ase.filters import FrechetCellFilter
 from ase.units import bar
-from ase.spacegroup.symmetrize import FixSymmetry
+if sys.version_info >= (3, 10):
+    from ase.constraints import FixSymmetry
+else:
+    from ase.spacegroup.symmetrize import FixSymmetry
 from ase.calculators.mixing import MixedCalculator
 from sevenn.sevennet_calculator import SevenNetCalculator
 
