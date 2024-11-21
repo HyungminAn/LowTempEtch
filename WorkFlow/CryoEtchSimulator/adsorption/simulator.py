@@ -138,9 +138,10 @@ class AdsorptionSimulator():
 
     def _summarize_results(self):
         E_before = self.energy['slab'] + self.energy['mol']
-        E_ads = [E - E_before for E in self.energy['slabMol']]
+        E_ads = [-(E - E_before) for E in self.energy['slabMol']]
         temp_range = np.linspace(200, 400)
 
+        breakpoint()
         plotter = EffectiveAdsorptionEnergyPlotter(self.dst, E_ads, temp_range)
         plotter.plot()
 
@@ -179,6 +180,7 @@ class EffectiveAdsorptionEnergyPlotter():
         for T in self.temp_range:
             value = kB*T*np.log(np.sum(np.exp(self.energies/(kB*T)))/len(self.energies))
             E_eff.append(value)
+        breakpoint()
 
         self.E_eff = E_eff
 
