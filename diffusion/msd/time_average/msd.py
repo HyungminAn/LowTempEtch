@@ -14,7 +14,7 @@ Modified by Hyungmin An, 2024. 06. 03
 
 
 def load_data(**inputs):
-    path = inputs['path']
+    paths = inputs['paths']
     method = inputs['method']
     step = inputs['step']
     atom_type = inputs['atom_type']
@@ -26,7 +26,12 @@ def load_data(**inputs):
     else:
         raise ValueError("method should be AIMD or MD")
 
-    atoms_list = read(path, index='::'+str(step), format=atoms_format)
+    atoms_list = []
+    for path in paths:
+        atoms = read(path, format=atoms_format, index=':')
+        atoms_list.extend(atoms)
+    atoms_list = atoms_list[::step]
+
     idx_F = np.array([
         atom.index for atom in atoms_list[0] if atom.symbol == atom_type])
 
@@ -100,11 +105,12 @@ def msd(**inputs):
 
 
 def separate_F_index(**inputs):
-    path = inputs['path']
+    paths = inputs['paths']
     d_SiF = inputs['d_SiF']
     d_HF = inputs['d_HF']
 
-    poscar = read(path)
+    path_initial_poscar = paths[0]
+    poscar = read(path_initial_poscar)
     pos = poscar.get_positions()
     _, D_len = get_distances(pos, cell=poscar.get_cell(), pbc=True)
     idx_F = [atom.index for atom in poscar if atom.symbol == 'F']
@@ -123,17 +129,17 @@ def separate_F_index(**inputs):
 
 
 def main():
-    if len(sys.argv) != 3:
-        print("Usage: python time_average_unwrap.py method path")
+    if len(sys.argv) < 3:
+        print("Usage: python time_average_unwrap.py method paths")
         print("method: AIMD or MD")
         print("path: path to the trajectory file")
         sys.exit()
 
-    method, path = sys.argv[1:3]
+    method, paths = sys.argv[1], sys.argv[2:]
 
     inputs = {
         'method': method,
-        'path': path,
+        'paths': paths,
         'step': 10,
         'atom_type': 'F',
         'd_SiF': 2.0,
