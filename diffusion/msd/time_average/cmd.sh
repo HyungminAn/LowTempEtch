@@ -1,5 +1,5 @@
-path_src="/data2/andynn/LowTempEtch/04_diffusion/codes/msd/msd_average/time_average_unwrap.py"
-path_plot="/data2/andynn/LowTempEtch/04_diffusion/codes/msd/msd_average/plot.py"
+path_src="/data2/andynn/LowTempEtch/00_codes/diffusion/msd/time_average/msd.py"
+path_plot="/data2/andynn/LowTempEtch/00_codes/diffusion/msd/time_average/plot.py"
 path_dump=$1
 path_method=$2
 if [ -z $path_dump ]; then
