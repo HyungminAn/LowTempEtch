@@ -18,10 +18,12 @@ adsorption:
     additive:
       name: "IF5"
       n_layer: 1
+      n_mol: null
       n_repeat: 2
     etchant:
       name: "HF"
       n_layer: 1
+      n_mol: null
       n_repeat: 2
 
   md:
