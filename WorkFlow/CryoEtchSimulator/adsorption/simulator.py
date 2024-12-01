@@ -22,10 +22,12 @@ class AdsorptionSimulator():
         self.additive_name = inputs['adsorption']['mol_info']['additive']['name']
         self.additive_n_layer = inputs['adsorption']['mol_info']['additive']['n_layer']
         self.additive_n_repeat = inputs['adsorption']['mol_info']['additive']['n_repeat']
+        self.additive_n_mol = inputs['adsorption']['mol_info']['additive']['n_mol']
 
         self.etchant_name = inputs['adsorption']['mol_info']['etchant']['name']
         self.etchant_n_layer = inputs['adsorption']['mol_info']['etchant']['n_layer']
         self.etchant_n_repeat = inputs['adsorption']['mol_info']['etchant']['n_repeat']
+        self.etchant_n_mol = inputs['adsorption']['mol_info']['etchant']['n_mol']
 
         self.md_flag = inputs['adsorption']['md']['flag']
         self.md_time = inputs['adsorption']['md']['time']
@@ -45,7 +47,10 @@ class AdsorptionSimulator():
         self.energy = {
             'mol': _read_energy_from_thermo_dat(
                 Path(self.path_etchant).parent/'thermo.dat'),
+            'slab_clean': _read_energy_from_thermo_dat(
+                Path(self.path_slab).parent/'thermo.dat'),
         }
+        self.energy_total = {}
 
     def run(self):
         self._process_molecules('additive')
@@ -58,8 +63,10 @@ class AdsorptionSimulator():
         folder_name = '01_additive' if is_additive else '02_etchant'
         poscar_path = self.path_slab if is_additive else self.slab
 
-        input_dict_cellgen = self._create_cellgen_input_dict(
-                self.additive_n_layer, self.etchant_n_layer, poscar_path, is_additive)
+        input_dict_cellgen = self._create_cellgen_input_dict(self.additive_n_layer,
+                                                             self.etchant_n_layer,
+                                                             poscar_path,
+                                                             is_additive)
 
         for i in range(n_repeat):
             dst = self.dst / f'{folder_name}/{i}'
@@ -68,15 +75,19 @@ class AdsorptionSimulator():
 
         self._update_slab(folder_name, n_repeat, is_additive)
 
-    def _create_cellgen_input_dict(
-            self, n_layer_addi, n_layer_etchant, poscar_path, is_additive):
+    def _create_cellgen_input_dict(self,
+                                   n_layer_addi,
+                                   n_layer_etchant,
+                                   poscar_path,
+                                   is_additive):
         return {
             'params': {
                 'tolerance': self.cellgen_tolerance,
                 'layer_ADDI': n_layer_addi,
                 'layer_HF': n_layer_etchant,
-                'n_mol_HF': None if is_additive else 1,
-                'n_mol_additive': None if is_additive else 0,
+                'is_additive': is_additive,
+                'n_mol_HF': self.etchant_n_mol,
+                'n_mol_additive': self.additive_n_mol,
             },
             'path': {
                 'path_mol': self.path_additive,
@@ -130,26 +141,43 @@ class AdsorptionSimulator():
             for i in range(n_repeat)
         ]
         if is_additive:
-            idx_slab, self.energy['slab'] = min(energies, key=lambda x: x[1])
-            self.slab = os.path.abspath(
-                self.dst/f'{folder_name}/{idx_slab}/POSCAR_relaxed')
+            key = 'slab_addi'
         else:
-            self.energy['slabMol'] = [energy for _, energy in energies]
+            key = 'slab_addi_etchant'
+
+        idx_slab, self.energy[key] = min(energies, key=lambda x: x[1])
+        self.energy_total[key] = energies
+
+        self.slab = os.path.abspath(
+            self.dst/f'{folder_name}/{idx_slab}/POSCAR_relaxed')
 
     def _summarize_results(self):
-        E_before = self.energy['slab'] + self.energy['mol']
-        E_ads = [-(E - E_before) for E in self.energy['slabMol']]
+        E_before = self.energy['slab_clean'] + self.energy['mol']
+        E_ads_addi = [(i, -(E - E_before))
+                      for i, E in self.energy_total['slab_addi']]
+        E_before = self.energy['slab_addi'] + self.energy['mol']
+        E_ads_etchant = [(i, -(E - E_before))
+                         for i, E in self.energy_total['slab_addi_etchant']]
+
         temp_range = np.linspace(200, 400)
 
-        breakpoint()
-        plotter = EffectiveAdsorptionEnergyPlotter(self.dst, E_ads, temp_range)
+        plotter = EffectiveAdsorptionEnergyPlotter(self.dst, E_ads_etchant, temp_range)
         plotter.plot()
 
-        self._save_data()
+        result_dict = {
+                'E_slab_clean': self.energy['slab_clean'],
+                'E_mol': self.energy['mol'],
+                'E_slab_addi': self.energy['slab_addi'],
+                'E_slab_addi_etchant': self.energy['slab_addi_etchant'],
 
-    def _save_data(self):
+                'list(E_ads_addi)': E_ads_addi,
+                'list(E_ads_etchant)': E_ads_etchant,
+                }
+        self._save_data(result_dict)
+
+    def _save_data(self, result_dict):
         with open('result_adsorption.yaml', 'w') as f:
-            yaml.dump(self.energy, f)
+            yaml.dump(result_dict, f)
 
 
 class EffectiveAdsorptionEnergyPlotter():
@@ -180,7 +208,6 @@ class EffectiveAdsorptionEnergyPlotter():
         for T in self.temp_range:
             value = kB*T*np.log(np.sum(np.exp(self.energies/(kB*T)))/len(self.energies))
             E_eff.append(value)
-        breakpoint()
 
         self.E_eff = E_eff
 
@@ -188,6 +215,7 @@ class EffectiveAdsorptionEnergyPlotter():
         with open('dat', 'w') as f:
             for T, E in zip(self.temp_range, self.E_eff):
                 f.write(f'{T} {E}\n')
+
 
 def _read_energy_from_thermo_dat(path_thermo_dat):
     with open(path_thermo_dat, 'r') as f:

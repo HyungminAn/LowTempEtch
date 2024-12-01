@@ -46,12 +46,10 @@ class CellGenerator():
         self.mol_size = _get_mol_size(self.path_mol)
         self.mol_size_HF = _get_mol_size(self.path_HF)
 
+        self.is_additive = inputs['params']['is_additive']
         self.n_mol = inputs['params'].get('n_mol_additive')
         self.n_HF = inputs['params'].get('n_mol_HF')
-        if self.n_mol is None:
-            self.n_mol = self._get_mol_number(self.path_mol, self.mol_size)
-        if self.n_HF is None:
-            self.n_HF = self._get_mol_number(self.path_HF, self.mol_size_HF)
+        self.is_mol_number_determined = False
 
         self.inc_size = 0
         if inputs['path'].get('path_dst'):
@@ -62,8 +60,9 @@ class CellGenerator():
     def generate(self):
         self._write_packmol_input()
         result = _run_packmol(self.path_packmol, self.path_input, self.path_log)
+        inc_size_step = 1.0  # Angstrom
         while result != 0:
-            self.inc_size += 0.5
+            self.inc_size += inc_size_step
             print(f'Increasing the layer thickness by {self.inc_size} A')
             self._write_packmol_input()
             result = _run_packmol(self.path_packmol, self.path_input, self.path_log)
@@ -73,17 +72,53 @@ class CellGenerator():
             yaml.dump(write_dict, f)
         self._write()
 
-    def _write_packmol_input(self):
+    def _determine_number_of_mols(self):
         '''
         Write the input file for packmol
         '''
-        self.n_mol = round(self.n_mol * self.layer_additive)
-        self.n_HF = round(self.n_HF * self.layer_HF)
+        if self.is_mol_number_determined:
+            return
 
-        layer_thickness =\
-              self.mol_size    * self.layer_additive\
-            + self.mol_size_HF * self.layer_HF\
-            + self.inc_size
+        if self.is_additive:
+            if (self.layer_additive or self.layer_HF):
+                n_mol_per_layer = self._get_mol_number(self.path_mol, self.mol_size)
+                n_HF_per_layer = self._get_mol_number(self.path_HF, self.mol_size_HF)
+                self.n_mol = round(n_mol_per_layer * self.layer_additive)
+                self.n_HF = round(n_HF_per_layer * self.layer_HF)
+            else:
+                if (self.n_mol is None) or (self.n_HF is None):
+                    raise ValueError("Number of molecules should be given if layer thickness is not given")
+                self.n_mol = 1 if self.n_mol is None else self.n_mol
+                self.n_HF = 0 if self.n_HF is None else self.n_HF
+        else:
+            self.n_mol = 0
+            self.n_HF = 1
+
+        self.is_mol_number_determined = True
+
+    def _determine_layer_thickness(self):
+        if self.layer_additive >= 1:
+            minimal_thickness = self.mol_size * self.layer_additive
+        elif 1 > self.layer_additive >= 0:
+            minimal_thickness = self.mol_size
+        elif self.layer_HF >= 1:
+            minimal_thickness = self.mol_size_HF * self.layer_HF
+        elif 1 > self.layer_HF >= 0:
+            minimal_thickness = self.mol_size_HF
+        elif self.layer_additive == 0 and self.layer_HF == 0:
+            if self.is_additive:
+                minimal_thickness = self.mol_size
+            else:
+                minimal_thickness = self.mol_size_HF
+        else:
+            raise ValueError("Layer thickness should be positive")
+
+        layer_thickness = minimal_thickness + self.inc_size
+        return layer_thickness
+
+    def _write_packmol_input(self):
+        self._determine_number_of_mols()
+        layer_thickness = self._determine_layer_thickness()
 
         x_lim, y_lim, z_lim, z_atom_min, z_atom_max = _get_cell_params(self.path_poscar)
         x_shift = x_lim / 2
@@ -108,7 +143,7 @@ class CellGenerator():
             'output_name': self.path_output,
             'x_lim': (0, x_lim),
             'y_lim': (0, y_lim),
-            'z_lim': (z_atom_max, z_atom_max+layer_thickness+self.tolerance*2),
+            'z_lim': (z_atom_max, z_atom_max+layer_thickness),
         }
         with open(self.path_input, 'w') as f:
             line = f"tolerance {params_dict['tolerance']}\n"
@@ -258,3 +293,9 @@ def _run_packmol(path_packmol, path_input, path_log):
         stderr=subprocess.DEVNULL).returncode
 
     return result
+
+
+if __name__ == "__main__":
+    path_input_yaml = sys.argv[1]
+    cell_generator = CellGenerator(path_input_yaml)
+    cell_generator.generate()
