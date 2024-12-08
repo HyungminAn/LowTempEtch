@@ -38,12 +38,14 @@ def plot(dat_type, x, y, ax, **fit_info):
 
 
 def main():
-    if len(sys.argv) != 2:
-        print("Usage: python plot.py <datafile>")
+    if len(sys.argv) != 3:
+        print("Usage: python plot.py <datafile> <method>")
         sys.exit(1)
+    path_to_data = sys.argv[1]
+    method = sys.argv[2]
 
     md_info = {
-        'step_per_image': 100,
+        'step_per_image': 100 if method == 'MD' else 1,
         'time_step': 0.001,  # ps unit
     }
 
@@ -55,7 +57,7 @@ def main():
         'color': None,
     }
 
-    dat = np.loadtxt(sys.argv[1])
+    dat = np.loadtxt(path_to_data)
     md_step, msd_avg, _ = dat[:, 0], dat[:, 1], dat[:, 2]
     msd_avg_SiF, _ = dat[:, 3], dat[:, 4]
     msd_avg_HF, _ = dat[:, 5], dat[:, 6]

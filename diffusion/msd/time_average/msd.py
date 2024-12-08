@@ -20,7 +20,7 @@ def load_data(**inputs):
     atom_type = inputs['atom_type']
 
     if method == 'AIMD':
-        atoms_format = 'vasp-out'
+        atoms_format = 'vasp-xdatcar'
     elif method == 'MD':
         atoms_format = 'lammps-dump-text'
     else:
@@ -32,10 +32,24 @@ def load_data(**inputs):
         atoms_list.extend(atoms)
     atoms_list = atoms_list[::step]
 
-    idx_F = np.array([
-        atom.index for atom in atoms_list[0] if atom.symbol == atom_type])
+    if inputs['filter_by_height']:
+        cutoff = atoms_list[0].get_cell()[2, 2] + inputs['height_cutoff']
+        max_height = np.zeros(len(atoms_list[0]))
+        for atoms in atoms_list:
+            max_height = np.maximum(max_height, atoms.get_positions()[:, 2])
 
-    mask_F_SiF, mask_F_HF, mask_F_other = separate_F_index(**inputs)
+        idx_to_remove = set()
+        for idx, h_max in enumerate(max_height):
+            if h_max > cutoff:
+                idx_to_remove.add(idx)
+    else:
+        idx_to_remove = set()
+
+    idx_F = np.array([
+        atom.index for atom in atoms_list[0]
+        if atom.symbol == atom_type and atom.index not in idx_to_remove])
+
+    mask_F_SiF, mask_F_HF, mask_F_other = separate_F_index(idx_to_remove, **inputs)
     positions = [
         atoms[idx_F].get_positions()[:, 0:2]
         for atoms in atoms_list]
@@ -104,7 +118,7 @@ def msd(**inputs):
             f.write(line)
 
 
-def separate_F_index(**inputs):
+def separate_F_index(idx_to_remove, **inputs):
     paths = inputs['paths']
     d_SiF = inputs['d_SiF']
     d_HF = inputs['d_HF']
@@ -121,9 +135,9 @@ def separate_F_index(**inputs):
     idx_F_HF = [i for i in idx_F if np.min(D_len[i, idx_H]) < d_HF]
     idx_F_other = [i for i in idx_F if i not in idx_F_SiF + idx_F_HF]
 
-    mask_F_SiF = np.array([i in idx_F_SiF for i in idx_F])
-    mask_F_HF = np.array([i in idx_F_HF for i in idx_F])
-    mask_F_other = np.array([i in idx_F_other for i in idx_F])
+    mask_F_SiF = np.array([i in idx_F_SiF for i in idx_F if i not in idx_to_remove])
+    mask_F_HF = np.array([i in idx_F_HF for i in idx_F if i not in idx_to_remove])
+    mask_F_other = np.array([i in idx_F_other for i in idx_F if i not in idx_to_remove])
 
     return mask_F_SiF, mask_F_HF, mask_F_other
 
@@ -140,10 +154,12 @@ def main():
     inputs = {
         'method': method,
         'paths': paths,
-        'step': 10,
+        'step': 1,
         'atom_type': 'F',
         'd_SiF': 2.0,
         'd_HF': 1.1,
+        'filter_by_height': True,
+        'height_cutoff': -5.0
     }
 
     start_time = time.time()
