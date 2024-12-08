@@ -1,41 +1,53 @@
-# DFT (SmallCell, 1ML, 5ps):
-#   250: "/data2/andynn/LowTempEtch/04_diffusion/AFS/DFT/msd/SmallCell_IF5_1ML_HF_1ML_250K_10ps"
-#   300: "/data2/andynn/LowTempEtch/04_diffusion/AFS/DFT/msd/SmallCell_IF5_1ML_HF_1ML_300K_10ps"
-#   350: "/data2/andynn/LowTempEtch/04_diffusion/AFS/DFT/msd/SmallCell_IF5_1ML_HF_1ML_350K_10ps"
-#   400: "/data2/andynn/LowTempEtch/04_diffusion/AFS/DFT/msd/SmallCell_IF5_1ML_HF_1ML_400K_10ps"
+DFT (SmallCell, 1ML, 5ps):
+  250: "/data2/andynn/LowTempEtch/04_diffusion/AFS/DFT/msd/SmallCell_IF5_1ML_HF_1ML_250K_10ps"
+  300: "/data2/andynn/LowTempEtch/04_diffusion/AFS/DFT/msd/SmallCell_IF5_1ML_HF_1ML_300K_10ps"
+  350: "/data2/andynn/LowTempEtch/04_diffusion/AFS/DFT/msd/SmallCell_IF5_1ML_HF_1ML_350K_10ps"
+  400: "/data2/andynn/LowTempEtch/04_diffusion/AFS/DFT/msd/SmallCell_IF5_1ML_HF_1ML_400K_10ps"
 
-# chgTot (SmallCell, 1ML, 10ps):
-#   250: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/SmallCell_IF5_1ML_HF_1ML_250K_10ps"
-#   300: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/SmallCell_IF5_1ML_HF_1ML_300K_10ps"
-#   350: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/SmallCell_IF5_1ML_HF_1ML_350K_10ps"
-#   400: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/SmallCell_IF5_1ML_HF_1ML_400K_10ps"
+chgTot (SmallCell, 1ML, 10ps):
+  250: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/SmallCell_IF5_1ML_HF_1ML_250K_10ps"
+  300: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/SmallCell_IF5_1ML_HF_1ML_300K_10ps"
+  350: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/SmallCell_IF5_1ML_HF_1ML_350K_10ps"
+  400: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/SmallCell_IF5_1ML_HF_1ML_400K_10ps"
 
-# chgTot (LargeCell, 1ML, 10ps):
-#   250: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/LargeCell_IF5_1ML_HF_1ML_250K_10ps"
-#   300: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/LargeCell_IF5_1ML_HF_1ML_300K_10ps"
-#   350: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/LargeCell_IF5_1ML_HF_1ML_350K_10ps"
-#   400: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/LargeCell_IF5_1ML_HF_1ML_400K_10ps"
+vanilla (SmallCell, 1ML, 10ps):
+  250: "/data2/andynn/LowTempEtch/04_diffusion/AFS/FineTune/vanilla/SmallCell/SmallCell_IF5_1ML_HF_1ML_250K_10ps"
+  300: "/data2/andynn/LowTempEtch/04_diffusion/AFS/FineTune/vanilla/SmallCell/SmallCell_IF5_1ML_HF_1ML_300K_10ps"
+  350: "/data2/andynn/LowTempEtch/04_diffusion/AFS/FineTune/vanilla/SmallCell/SmallCell_IF5_1ML_HF_1ML_350K_10ps"
+  400: "/data2/andynn/LowTempEtch/04_diffusion/AFS/FineTune/vanilla/SmallCell/SmallCell_IF5_1ML_HF_1ML_400K_10ps"
 
-chgTot (SmallCell, 1ea, 10ps):
-  250: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/SmallCell_IF5_1_HF_1_250K_10ps"
-  300: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/SmallCell_IF5_1_HF_1_300K_10ps"
-  350: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/SmallCell_IF5_1_HF_1_350K_10ps"
-  400: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/SmallCell_IF5_1_HF_1_400K_10ps"
+chgTot (LargeCell, 1ML, 10ps):
+  250: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/LargeCell_IF5_1ML_HF_1ML_250K_10ps"
+  300: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/LargeCell_IF5_1ML_HF_1ML_300K_10ps"
+  350: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/LargeCell_IF5_1ML_HF_1ML_350K_10ps"
+  400: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/LargeCell_IF5_1ML_HF_1ML_400K_10ps"
 
-chgTot (SmallCell, 1ea, 100ps):
-  250: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/SmallCell_IF5_1_HF_1_250K_100ps"
+vanilla (LargeCell, 1ML, 10ps):
+  250: "/data2/andynn/LowTempEtch/04_diffusion/AFS/FineTune/vanilla/LargeCell/LargeCell_IF5_1ML_HF_1ML_250K_10ps"
+  300: "/data2/andynn/LowTempEtch/04_diffusion/AFS/FineTune/vanilla/LargeCell/LargeCell_IF5_1ML_HF_1ML_300K_10ps"
+  350: "/data2/andynn/LowTempEtch/04_diffusion/AFS/FineTune/vanilla/LargeCell/LargeCell_IF5_1ML_HF_1ML_350K_10ps"
+  400: "/data2/andynn/LowTempEtch/04_diffusion/AFS/FineTune/vanilla/LargeCell/LargeCell_IF5_1ML_HF_1ML_400K_10ps"
 
-chgTot (LargeCell, 1ea, 1ns):
-  250: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/LargeCell_IF5_1_HF_1_250K_1ns"
+# chgTot (SmallCell, 1ea, 10ps):
+#   250: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/SmallCell_IF5_1_HF_1_250K_10ps"
+#   300: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/SmallCell_IF5_1_HF_1_300K_10ps"
+#   350: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/SmallCell_IF5_1_HF_1_350K_10ps"
+#   400: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/SmallCell_IF5_1_HF_1_400K_10ps"
 
-chgTot (SmallCell, 1ea, 1ns):
-  250: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/SmallCell_IF5_1_HF_1_250K_1ns"
+# chgTot (SmallCell, 1ea, 100ps):
+#   250: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/SmallCell_IF5_1_HF_1_250K_100ps"
 
-chgTot (LargeCell, 1ea, 10ps):
-  250: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/LargeCell_IF5_1_HF_1_250K_10ps"
-  300: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/LargeCell_IF5_1_HF_1_300K_10ps"
-  350: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/LargeCell_IF5_1_HF_1_350K_10ps"
-  400: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/LargeCell_IF5_1_HF_1_400K_10ps"
+# chgTot (LargeCell, 1ea, 1ns):
+#   250: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/LargeCell_IF5_1_HF_1_250K_1ns"
+
+# chgTot (SmallCell, 1ea, 1ns):
+#   250: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/SmallCell_IF5_1_HF_1_250K_1ns"
+
+# chgTot (LargeCell, 1ea, 10ps):
+#   250: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/LargeCell_IF5_1_HF_1_250K_10ps"
+#   300: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/LargeCell_IF5_1_HF_1_300K_10ps"
+#   350: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/LargeCell_IF5_1_HF_1_350K_10ps"
+#   400: "/data2/andynn/LowTempEtch/04_diffusion/AFS/chgTot/LargeCell_IF5_1_HF_1_400K_10ps"
 
 # ewc (SmallCell, 1ML, 10ps):
 #   250: "/data2/andynn/LowTempEtch/04_diffusion/AFS/FineTune/ewc/SmallCell_IF5_1ML_HF_1ML_250K_10ps"
@@ -48,12 +60,6 @@ chgTot (LargeCell, 1ea, 10ps):
 #   300: "/data2/andynn/LowTempEtch/04_diffusion/AFS/FineTune/ewc_replay/SmallCell_IF5_1ML_HF_1ML_300K_10ps"
 #   350: "/data2/andynn/LowTempEtch/04_diffusion/AFS/FineTune/ewc_replay/SmallCell_IF5_1ML_HF_1ML_350K_10ps"
 #   400: "/data2/andynn/LowTempEtch/04_diffusion/AFS/FineTune/ewc_replay/SmallCell_IF5_1ML_HF_1ML_400K_10ps"
-
-# vanilla (SmallCell, 1ML, 10ps):
-#   250: "/data2/andynn/LowTempEtch/04_diffusion/AFS/FineTune/vanilla/SmallCell_IF5_1ML_HF_1ML_250K_10ps"
-#   300: "/data2/andynn/LowTempEtch/04_diffusion/AFS/FineTune/vanilla/SmallCell_IF5_1ML_HF_1ML_300K_10ps"
-#   350: "/data2/andynn/LowTempEtch/04_diffusion/AFS/FineTune/vanilla/SmallCell_IF5_1ML_HF_1ML_350K_10ps"
-#   400: "/data2/andynn/LowTempEtch/04_diffusion/AFS/FineTune/vanilla/SmallCell_IF5_1ML_HF_1ML_400K_10ps"
 
 # ewc_replay (SmallCell, 1ML, 100ps):
 #   250: "/data2/andynn/LowTempEtch/04_diffusion/AFS/FineTune/ewc_replay_100ps/SmallCell_IF5_1ML_HF_1ML_250K_100ps"

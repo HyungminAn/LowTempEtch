@@ -137,18 +137,39 @@ class DiffCoeffPlotter:
             y_err.append((np.max(y_list) - np.min(y_list)) / 2)
         return x_err, y_mean, y_err
 
+    def _pick_color(self, cal_type):
+        # color_list = plt.rcParams['axes.prop_cycle'].by_key()['color']
+        # color_list = ['#0c74b2',
+        #               '#D76224',
+        #               '#1BA077',
+        #               '#CA7AAA',
+                      # '#E8A125']
+        # color_cycle = cycle(color_list)
+        color_dict = {
+                'DFT': '#0c74b2',
+                'chgTot': '#D76224',
+                'vanilla': '#1BA077',
+                }
+
+        for key, value in color_dict.items():
+            if key in cal_type:
+                return value
+
+        raise ValueError(f'Unknown cal_type: {cal_type}')
+
     def plot(self, data):
         '''
         Plot data.
         '''
         plt.rcParams.update({'font.size': 18})
         fig, ax = plt.subplots(figsize=(12, 6))
-        color_list = plt.rcParams['axes.prop_cycle'].by_key()['color']
-        color_cycle = cycle(color_list)
 
-        x_shift = np.linspace(-1, 1, len(data))
+        x_shift = np.linspace(-1, 1, len(data)) * 0.4
 
-        for (cal_type, dat), color, x_s in zip(data.items(), color_cycle, x_shift):
+        # for (cal_type, dat), color, x_s in zip(data.items(), color_cycle, x_shift):
+        for (cal_type, dat), x_s in zip(data.items(), x_shift):
+            color = self._pick_color(cal_type)
+
             x, y = [], []
             for (temp, diff_coeff) in dat.items():
                 for d in diff_coeff:
@@ -181,16 +202,27 @@ class DiffCoeffPlotter:
                     }
                     ax.plot(x, y_pred, **prop_dict_line)
 
-            prop_dict_scatter = {
-                's': 100,
+            # prop_dict_scatter = {
+            #     's': 100,
+            #     'color': color,
+            #     'label': label,
+            #     'alpha': 0.5,
+            # }
+            # ax.scatter(x + x_s, y, **prop_dict_scatter)
+
+            prop_dict_errorbar = {
                 'color': color,
                 'label': label,
-                'alpha': 0.5,
+                'fmt': '^',
+                'capsize': 5,
             }
-            ax.scatter(x + x_s, y, **prop_dict_scatter)
-
             x_err, y_mean, y_err = self.get_errorbar(x, y, x_s)
-            ax.errorbar(x_err, y_mean, yerr=y_err, color=color, fmt='^')
+
+            eb = ax.errorbar(x_err, y_mean, yerr=y_err, **prop_dict_errorbar)
+            if 'Large' in cal_type:
+                eb[-1][0].set_linestyle('-')
+            else:
+                eb[-1][0].set_linestyle('--')
 
         self.set_xy_axis_info(ax)
         self.add_xticks_temperature_in_units_of_K(ax)
