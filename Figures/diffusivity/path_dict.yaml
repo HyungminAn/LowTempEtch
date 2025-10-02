@@ -1,0 +1,23 @@
+DFT:
+  250: "../DFT/SmallCell_IF5_1ML_HF_1ML_250K_10ps"
+  300: "../DFT/SmallCell_IF5_1ML_HF_1ML_300K_10ps"
+  350: "../DFT/SmallCell_IF5_1ML_HF_1ML_350K_10ps"
+  # 400: "../DFT/SmallCell_IF5_1ML_HF_1ML_400K_10ps"
+
+SevenNet-0:
+  250: "../chgTot/SmallCell_IF5_1ML_HF_1ML_250K_10ps"
+  300: "../chgTot/SmallCell_IF5_1ML_HF_1ML_300K_10ps"
+  350: "../chgTot/SmallCell_IF5_1ML_HF_1ML_350K_10ps"
+  # 400: "../chgTot/SmallCell_IF5_1ML_HF_1ML_400K_10ps"
+
+Fine-tuned NNP:
+  250: "../vanilla/SmallCell_IF5_1ML_HF_1ML_250K_10ps/"
+  300: "../vanilla/SmallCell_IF5_1ML_HF_1ML_300K_10ps/"
+  350: "../vanilla/SmallCell_IF5_1ML_HF_1ML_350K_10ps/"
+  # 400: "../vanilla/SmallCell_IF5_1ML_HF_1ML_400K_10ps/"
+
+# SevenNet-0 (FT):
+#   250: "../vanilla_2/SmallCell_IF5_1ML_HF_1ML_250K_10ps"
+#   300: "../vanilla_2/SmallCell_IF5_1ML_HF_1ML_300K_10ps"
+#   350: "../vanilla_2/SmallCell_IF5_1ML_HF_1ML_350K_10ps"
+#   400: "../vanilla_2/SmallCell_IF5_1ML_HF_1ML_400K_10ps"
