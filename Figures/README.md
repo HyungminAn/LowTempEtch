@@ -44,6 +44,15 @@ See `chain_analysis/`.
 
 ## Supplementary figures
 ### Figure S1
+1. Get bond length data using `bond_length_analysis/get_bond_length.py`.
+2. Plot using `bond_length_analysis/plot_pdf.py`.
+
+<div align="center">
+    <img src="./bond_length_analysis/result.png"
+    width="350" height="350"
+    title="Figure S1"/>
+</div>
+
 
 ### Figure S2
 See `trajectory/`.

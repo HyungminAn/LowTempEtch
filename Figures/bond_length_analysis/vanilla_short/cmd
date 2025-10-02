@@ -1,0 +1,3 @@
+path_py="/data2_1/team_lowtetch/Figures_HM/supplementary/coordinationNumber/plot.py"
+path_dump="/data2_1/team_lowtetch/nnp_md_validation/large_vanilla_short/dump.lammps"
+py ${path_py} ${path_dump} 1
