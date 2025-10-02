@@ -1,6 +1,13 @@
 # Figures
 ## Main figures
 ### Figure 3
+See `atom_config/`.
+
+<div align="center">
+    <img src="./atom_config/figure_1.png"
+    width="710" height="473"
+    title="Figure 3"/>
+</div>
 
 ### Figure 4
 
