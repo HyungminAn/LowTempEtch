@@ -16,15 +16,22 @@ See `atom_config/`.
 ### Figure 5
 
 ### Figure 6
-See `diffusivity/`.
+See `diffusivity/compare_mlip/`.
 
 <div align="center">
-    <img src="./diffusivity/result.png"
+    <img src="./diffusivity/compare_mlip/result.png"
     width="350" height="420"
     title="Figure 6"/>
 </div>
 
 ### Figure 7
+See `diffusivity/additive_effect/`.
+
+<div align="center">
+    <img src="./diffusivity/additive_effect/result.png"
+    width="350" height="420"
+    title="Figure 7"/>
+</div>
 
 ### Figure 8
 
