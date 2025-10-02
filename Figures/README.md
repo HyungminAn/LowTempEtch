@@ -59,3 +59,15 @@ See `trajectory/`.
 ### Figure S4
 
 ### Figure S5
+
+## Other figures
+### EOS
+See `etc/EOS/`.
+
+<div align="center">
+    <img src="./etc/EOS/EOS.png"
+    width="350" height="500"
+    title="EOS"/>
+</div>
+
+
