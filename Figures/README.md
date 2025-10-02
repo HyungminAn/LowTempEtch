@@ -34,6 +34,13 @@ See `diffusivity/additive_effect/`.
 </div>
 
 ### Figure 8
+See `chain_analysis/`.
+
+<div align="center">
+    <img src="./chain_analysis/result.png"
+    width="350" height="420"
+    title="Figure 8"/>
+</div>
 
 ## Supplementary figures
 ### Figure S1
