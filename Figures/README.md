@@ -32,4 +32,16 @@ See `diffusivity/`.
 ### Figure S1
 
 ### Figure S2
+See `trajectory/`.
 
+<div align="center">
+    <img src="./trajectory/figure.png"
+    width="930" height="483"
+    title="Figure S2"/>
+</div>
+
+### Figure S3
+
+### Figure S4
+
+### Figure S5
