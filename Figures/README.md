@@ -64,6 +64,13 @@ See `trajectory/`.
 </div>
 
 ### Figure S3
+See `cell_size_effect/`.
+
+<div align="center">
+    <img src="./cell_size_effect/result.png"
+    width="350" height="350"
+    title="Figure S3"/>
+</div>
 
 ### Figure S4
 
