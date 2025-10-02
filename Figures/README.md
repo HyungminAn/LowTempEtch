@@ -69,7 +69,7 @@ See `trajectory/`.
 
 ### Figure S5
 
-## Other figures
+## Other scripts
 ### EOS
 See `etc/EOS/`.
 
@@ -79,4 +79,5 @@ See `etc/EOS/`.
     title="EOS"/>
 </div>
 
-
+### gas
+See `etc/plot_gas/`.
