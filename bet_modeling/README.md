@@ -3,9 +3,9 @@
 gas on a surface, based on BET adsorption thoery.
 
 <div align="center">
-    <img src="./MultiLayerThickness/summary/output_IF5.png
-    width="710" height="473"
-    title="Figure 2"/>
+    <img src="./MultiLayerThickness/summary/output_IF5.png"
+    width="1500" height="600"
+    title="Figure"/>
 </div>
 
 
