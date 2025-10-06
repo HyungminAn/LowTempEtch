@@ -1,0 +1,17 @@
+constants:
+  kB: 8.617E-05  # Boltzmann constant, in eV/K
+  # N_a: 6.022E+23  # Avogadro's number, in 1/mol
+  pi: 3.14159  # pi
+  k0: 10.0E+12  # attempt frequency, in Hz
+
+process_params:
+  P: 1.0  # pressure of neutral gas, in Pa
+  AR: 30  # aspect ratio of the hole
+  d: 1.0E-07  # width of the hole, in m
+  T: 150  # temperature of the neutral gas, in K
+
+gas_params:
+    m: 221.89  # mass of the neutral gas, in amu
+    D0: 3.444E-02 # diffusion coefficient, in cm^2/s
+    E_ads: 0.45  # adsorption energy, in eV
+    E_diff: 0.23  # diffusion energy, in eV
