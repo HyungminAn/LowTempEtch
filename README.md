@@ -8,14 +8,14 @@
     title="System"/>
 </div>
 
+## Figures
+See `Figures/README.md`.
+
 <div align="center">
     <img src="Figures/diffusivity/compare_mlip/result.png"
     width="70%" height="70%"
     title="Diffusion coefficient"/>
 </div>
-
-## Figures
-See `Figures/README.md`.
 
 ## Fine-tuning
 See `dataset/README.md`.
@@ -32,3 +32,10 @@ See `screening/`.
 
 # BET modeling for multi-layer adsorption
 See `bet_modeling/`.
+
+<div align="center">
+    <img src="bet_modeling/MultiLayerThickness/output_250.png"
+    width="70%" height="70%"
+    title="BET example"/>
+</div>
+
