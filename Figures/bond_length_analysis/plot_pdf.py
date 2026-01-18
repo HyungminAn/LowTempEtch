@@ -28,13 +28,13 @@ def main():
         ax_SiF.plot(x, y,
                     linewidth=1.5,
                     color='tab:grey',
-                    label='Scratch NNP')
+                    label='Scratch MLIP')
     x = [i * 0.001 for i in range(len(list(v_sif6_bond_length_dict.values())[0]))]
     for y in v_sif6_bond_length_dict.values():
         ax_SiF.plot(x, y,
                     linewidth=1.5,
                     color=color_dict['orange'],
-                    label='Fine-tuned NNP')
+                    label='Fine-tuned MLIP')
 
     ax_SiF.set_xlim(0, 1)
     ax_SiF.set_ylabel('Si-F\n Bond length\n' + r'($\mathrm{\AA}$)')
@@ -44,13 +44,13 @@ def main():
         ax_NH.plot(x, y,
                    linewidth=1.5,
                    color='tab:grey',
-                   label='Scratch NNP')
+                   label='Scratch MLIP')
     x = [i * 0.001 for i in range(len(list(v_nh4_bond_length_dict.values())[0]))]
     for y in v_nh4_bond_length_dict.values():
         ax_NH.plot(x, y,
                    linewidth=1.5,
                    color=color_dict['orange'],
-                   label='Fine-tuned NNP')
+                   label='Fine-tuned MLIP')
 
     ax_NH.set_xlim(0, 1)
     ax_NH.set_xlabel('Time (ps)')
@@ -77,6 +77,7 @@ def main():
 
     fig.savefig('result.pdf', dpi=200)
     fig.savefig('result.png')
+    fig.savefig('result.eps')
 
 
 if __name__ == '__main__':
